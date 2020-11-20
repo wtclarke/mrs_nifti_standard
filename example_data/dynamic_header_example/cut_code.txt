@@ -1,0 +1,55 @@
+#### Sequence block for extra info 
+
+**Offset**,
+double,
+ppm  
+**PulseAmplitude**,
+Array of doubles,
+Amplitude modulation in Hz   
+**PulsePhase**,
+Array of doubles,
+Phase modulation in radians   
+**Nucleus**,
+String,
+Nucleus  
+**PulseGradient**,
+Nx3 Array of doubles,
+Gradients applied during pulse on each axis. Units:  mT/m  
+**PulseDuration**,
+Double,
+Pulse duration in seconds  
+**FlipAngle**,
+Double,
+Pulse target flip-angle. Units: degrees  
+**Delay**,
+Double,
+Time in seconds between the end of the pulse and start of next block  
+**RephaseArea**,
+1x3 Array of doubles,
+Gradient rephase areas applied during delay time after each pulse. mT.ms/m  
+**CoherenceFilter**,
+Signed integer,
+Coherence order filter to apply at the end of each block. If absent no filter is applied.  
+
+import json
+
+with open('original_data/steam11.json', 'r') as json_file:
+    simulator_seq_description = json.loads(json_file.read())
+
+seq_block = []
+
+for idx,(RF,delay,rephase,cf) in enumerate(zip( simulator_seq_description['RF'],
+                                                simulator_seq_description['delays'],
+                                                simulator_seq_description['rephaseAreas'],
+                                                simulator_seq_description['CoherenceFilter'])):
+    block = {'Offset': RF['frequencyOffset'],
+             'PulseAmplitude':RF['amp'],
+             'PulsePhase':RF['phase'],
+             'Nucleus':'1H',
+             'PulseGradient':RF['grad'],
+             'PulseDuration':RF['time'],
+             'FlipAngle':90,
+             'Delay':delay,
+             'RephaseArea':rephase,
+             'CoherenceFilter':cf}
+    seq_block.append(block)
