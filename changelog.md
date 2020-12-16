@@ -1,10 +1,11 @@
 # Changelog and outstanding issues
 ********************************
 
-## Outstanding Issues
-
-1. Partial redefinition of pixdim by SpectralWidth in JSON header. What is the best way of handling this? Specific header value, full redefinition of pixdim, or is existing nifti header precision sufficent.
-2. Handedness definition of complex time domain data.
+## 16th December 2020
+- Added specification.
+- Updated examples to be compliant with version 0.2 of the specification.
+- Added minimal examples as submodules.
+- Added handedness definition of complex time domain data. See data_conventions.ipynb.
 
 ## 15th October 2020
 - Added data_convention notebook.
