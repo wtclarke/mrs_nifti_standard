@@ -29,14 +29,17 @@ To run the included python jupyter notebooks you will need:
 - pymapvbvd
 - nibabel
 - jupyter
+- numpy
+- h5py
 
 We recommend using conda to download the packages, and using python >=3.7.
 
-```conda install -c conda-forge jupyterlab pymapvbvd nibabel```
+```conda install -c conda-forge jupyterlab pymapvbvd nibabel numpy h5py```
 
 ### Installing spec2nii
     git clone https://github.com/wexeee/spec2nii.git
     cd spec2nii
+    git checkout nifti_mrs
     pip install .
 
 
