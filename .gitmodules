@@ -1,0 +1,9 @@
+[submodule "minimal_examples/r"]
+	path = minimal_examples/r
+	url = https://github.com/martin3141/nifti_mrs_minimal_r_example.git
+[submodule "minimal_examples/matlab"]
+	path = minimal_examples/matlab
+	url = https://github.com/schorschinho/nifti-mrs-matlab
+[submodule "minimal_examples/java"]
+	path = minimal_examples/java
+	url = https://github.com/amirshamaei/NIfTI-MRS
