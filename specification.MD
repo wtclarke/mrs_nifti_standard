@@ -1,6 +1,6 @@
 # NIfTI MRS format specification
 
-Version 0.2
+Version 0.3
 
 
 # 1 Purpose
@@ -35,7 +35,7 @@ In this document we propose a standard for the storage of MRS data as a NIfTI fi
 
 # 2 Specification
 
-The NIfTI format defines a binary file with filename extension “.nii” which optionally may be compressed e.g. “.nii.gz”. A NIfTI file comprises a header ([Official definition of the nifti1 header](https://nifti.nimh.nih.gov/pub/dist/src/niftilib/nifti1.h) / [nifti2.h](https://nifti.nimh.nih.gov/pub/dist/src/nifti2/nifti2.h)) followed by a multidimensional array of numerical data points. Optionally, one or more ‘header extensions’ may follow the header. The format of a header extension is indicated by a predefined ‘ecode’ number. NIfTI header keys will be distinguished in this document using a monospace font. For example, the first header value corresponds to the size of the header: `int sizeof_hdr`. All indexes are counted from zero, i.e. `pix_dim[0]` is the first element of the array and `{N}` should be substituted as 0, 1, 2….
+The NIfTI format defines a binary file with filename extension “.nii” which optionally may be compressed e.g. “.nii.gz”. A NIfTI file comprises a header ([Official definition of the nifti1 header](https://nifti.nimh.nih.gov/pub/dist/src/niftilib/nifti1.h) / [nifti2.h](https://nifti.nimh.nih.gov/pub/dist/src/nifti2/nifti2.h)) followed by a multidimensional array of numerical data points. Optionally, one or more ‘header extensions’ may follow the header. The format of a header extension is indicated by a predefined ‘ecode’ number. NIfTI header keys will be distinguished in this document using a monospace font. For example, the first header value corresponds to the size of the header: `int sizeof_hdr`. All indexes are counted from zero, i.e. `pix_dim[0]` is the first element of the array and {N} should be substituted as 0, 1, 2….
 
 The NIfTI MRS format inherits all definitions from the NIfTI standard, with the following additional requirements:
 
@@ -132,8 +132,8 @@ For conformance to this standard the JSONheader extension <span style="text-deco
 
 More than one value is permitted for each of these keys to allow for multi-nuclei experiments. For example, a 1H-13C HSQC acquisition at 7T would have the following JSON entries:
 
-    “SpectrometerFrequency”:[300,75.5]
-    “ResonantNucleus”:[“1H”,”13C”]
+    “SpectrometerFrequency”:[300, 75.5]
+    “ResonantNucleus”:[“1H”, “13C”]
 
 JSON metadata specified as an array of values (e.g. “Array of numbers”) must be given as an array even for single element arrays. I.e. “SpectrometerFrequency”:[300] not “SpectrometerFrequency”:300 in the previous example.
 
@@ -206,6 +206,12 @@ The optional data dimensions may also be used to store alternative information (
    <td>User defined dimension.
    </td>
   </tr>
+  <tr>
+   <td>“DIM_ISIS”
+   </td>
+   <td>Dimension for storing image-selected in vivo spectroscopy (ISIS) acquisitions.
+   </td>
+  </tr>
 </table>
 
 
@@ -226,10 +232,9 @@ If the dimension is used to increment over defined metadata key(s) then this can
 
 More than one metadata key can be specified using a JSON object:
 
-    “dim_5_header”: {“EchoTime”:  [0.03, 0.04, …, 0.10],
-                     “RepetitionTime”:  [1.0, 1.10, …, 2.00]}
+    “dim_5_header”: {“EchoTime”:  [0.03, 0.04, …, 0.10], “RepetitionTime”:  [1.0, 1.10, …, 2.00]}
 
-For more information see §2.3.5 _Dynamically changing metadata_. Both the dim_{N}_info and dim_{N}_header keys are optional. Note that the sixth to eighth elements of pixdim (`pixdim[5], pixdim[6], pixdim[7]`) are not used for this purpose.
+For more information and examples see §2.3.5 _Dynamically changing metadata_. Both the dim_{N}_info and dim_{N}_header keys are optional. Note that the sixth to eighth elements of pixdim (`pixdim[5], pixdim[6], pixdim[7]`) are not used for this purpose.
 
 
 ### 2.3.3 Standard defined metadata
@@ -275,7 +280,7 @@ At either the top level or within the json object the key prefix “private_” 
    </td>
    <td>Any, including nested JSON structures.
    </td>
-   <td>Arbitrary user defined meta-data.SHould be removed upon anonymisation.
+   <td>Arbitrary user defined meta-data. Should be removed upon anonymisation.
    </td>
   </tr>
   <tr>
@@ -293,13 +298,13 @@ Single-valued user meta-data should also use this format, providing a descriptio
 
 
     “Excitation pulse duration”: { “Value” : 3.0,
-    			                   “Description” : “Duration of the excitation pulse.”}
+                                   “Description” : “Duration of the excitation pulse.”}
 
 Or for multiple related user-defined fields:
 
 
     “Excitation pulse information”: { “Duration”: 3.0,
-    				                  “Pulse name”: ”SINC”,
+                                      “Pulse name”: ”SINC”,
                                       “Description” : “Excitation pulse information. Duration in ms.”}
 
 
@@ -315,11 +320,13 @@ The values of the associated metadata for each dimension index can then be speci
     1. fully, by using a JSON array of length equal to the size of the dimension,
     2. in abbreviated form, using a JSON object with fields “start” and “increment”.
 
-    The units and form of each element should match the metadata key specification in appendix B. Option b is therefore only suitable for meta-data taking point numeric values.
+    The units and form of each element should match the metadata key specification in appendix B. Option b is only suitable for meta-data taking point numeric values at fixed increments.
 
 2. For user-specified metadata the format of §2.3.4 should be followed, using a JSON object, including a “Description” field with the iterable array or short format contained in “Value”.
 
-Examples:
+<span style="text-decoration:underline;">Examples</span>
+
+Example data is included in the official standard git repository alongside the descriptions in this document.
 
 _Example 1: j-difference editing utilising a user-defined meta-data structure to define the position of the editing pulse. The data contains two conditions “ON” and “OFF” contained in dim 7 after an uncombined coils dimension and a dimension containing repeated averages._
 
@@ -327,33 +334,31 @@ _Example 1: j-difference editing utilising a user-defined meta-data structure to
     “dim_6”: “DIM_DYN”
     “dim_7”: “DIM_EDIT”
     “dim_7_info”: “j-difference editing, two conditions”
-    “dim_7_header”: {“pulse_offset”: [1.89, 7.8],
-                     “condition”: [ “ON”, “OFF”]},
+    “dim_7_header”: {“EditCondition”: [ “ON”, “OFF”]},
 
 _Example 2: j-evolution utilising a uniformly incremented TE evolution. The Echo time is specified in the shortened object form in dimension 6 (after a coils dimension)._
 
     “dim_5”: “DIM_COIL”
     “dim_6”: “DIM_INDIRECT_0”
     “dim_6_info”: “Incremented echo time for j-evolution”
-    “dim_6_header”: {“EchoTime”:{“start”: 0.03, “increment”: 0.01}}
+    “dim_6_header”: {“EchoTime”: {“start”: 0.03, “increment”: 0.01}}
 
 _Example 3: j-evolution utilising a non-uniform incremented TE evolution. The Echo time is specified fully as an array in dimension 6 (after a coils dimension)._
 
     “dim_5”: “DIM_COIL”
     “dim_6”: “DIM_INDIRECT_0”
     “dim_6_info”: “Incremented echo time for j-evolution”
-    “dim_6_header”: {“EchoTime”:[0.035, 0.036, 0.037, 0.04, … 0.125]}
+    “dim_6_header”: {“EchoTime”: [0.035, 0.036, 0.037, 0.04, … 0.125]}
 
-_Example 4: A fingerprinting based example. Dimension 5 is used to index changes across two standard-defined metadata keys (EchoTime and RepetitionTime) as well as a user defined pulse flip-angle._
+_Example 4: A fingerprinting based example. Dimension 5 is used to index changes across three standard-defined metadata keys (EchoTime, RepetitionTime, and ExcitationFlipAngle) as well as a user defined inversion/phase condition._
 
     “dim_5”: “DIM_USER_0”
     “dim_5_info”: “Acquisition index with variable TE, TR, flip-angle and pulse offset.”
     “dim_5_header”: {“EchoTime”: [0.000, 0.001, 0.002, 0.005, … 0.090],
                     “RepetitionTime”: [0.0, 0.1, 0.2, 0.1, … 0.0],
-                    “exc_pulse_fa”: {“Value”: [10, 20, 30, … 100],
-                                     “Description” : “User defined excitation pulse flip-angle.”},
-                    “exc_pulse_offset”: {“Value”: {“start”: -100, “increment”: 10},
-                                         “Description” : “User defined excitation pulse offset in Hz.”}}
+                    “ExcitationFlipAngle”: [10, 20, 30, … 100],
+                    “Inv_condition”: { “Value” : [0, 180, …, 180],
+                    “Description” : “User defined inversion condition.”}}
 
 
 # 3 Resources
@@ -505,6 +510,54 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
    <td>N
    </td>
   </tr>
+  <tr>
+   <td>VOI
+   </td>
+   <td>[number]
+   </td>
+   <td>-
+   </td>
+   <td>VoI localisation volume for MRSI sequences. Stored as a 4 x 4 affine using identical conventions to the xform NIfTI affine matrix. Not defined for data stored with a single spatial voxel.
+   </td>
+   <td>N
+   </td>
+  </tr>
+  <tr>
+   <td>WaterSuppressed
+   </td>
+   <td>bool
+   </td>
+   <td>-
+   </td>
+   <td>Boolian value indicating whether data was collected with (True) or without (False) water suppression.
+   </td>
+   <td>N
+   </td>
+  </tr>
+  <tr>
+   <td>WaterSuppressionType
+   </td>
+   <td>string
+   </td>
+   <td>-
+   </td>
+   <td>Type of water suppression used. 
+   </td>
+   <td>N
+   </td>
+  </tr>
+  <tr>
+   <td>SequenceTriggered
+   </td>
+   <td>bool
+   </td>
+   <td>-
+   </td>
+   <td>Boolian value indicating whether the sequence is triggered. If triggered the repetition time might not be constant.
+   </td>
+   <td>N
+   </td>
+  </tr>
 </table>
 
 
@@ -550,7 +603,7 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
    </td>
    <td>Manufacturer's serial number of the device. DICOM (0018,1000).
    </td>
-   <td>N
+   <td>Y
    </td>
   </tr>
   <tr>
@@ -570,7 +623,7 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
    </td>
    <td>Institution’s Name. DICOM (0008,0080).
    </td>
-   <td>N
+   <td>Y
    </td>
   </tr>
   <tr>
@@ -579,6 +632,26 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
    <td>String
    </td>
    <td>Institution’s address. DICOM (0008,0081).
+   </td>
+   <td>Y
+   </td>
+  </tr>
+  <tr>
+   <td>TxCoil
+   </td>
+   <td>String
+   </td>
+   <td>Name of transmit RF coil.
+   </td>
+   <td>N
+   </td>
+  </tr>
+  <tr>
+   <td>RxCoil
+   </td>
+   <td>String
+   </td>
+   <td>Name of receive RF coil
    </td>
    <td>N
    </td>
@@ -644,7 +717,7 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
    </td>
    <td>String
    </td>
-   <td>Patient position descriptor relative to the equipment. DICOM (0018,5100).
+   <td>Patient position descriptor relative to the equipment. DICOM (0018,5100). Must be one of the DICOM defined code strings e.g. HFS, HFP.
    </td>
    <td>N
    </td>
@@ -654,7 +727,17 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
    </td>
    <td>String
    </td>
-   <td>Patient's full name. DICOM (0010,1010).
+   <td>Patient's full name. DICOM (0010,0010).
+   </td>
+   <td>Y
+   </td>
+  </tr>
+  <tr>
+   <td>PatientID
+   </td>
+   <td>String
+   </td>
+   <td>Patient's ID. DICOM (0010,0020).
    </td>
    <td>Y
    </td>
@@ -693,7 +776,7 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
 
 
 
-## 5.5 Provenance and conversion metadata
+## 5.5 Data provenance and conversion metadata
 
 
 <table>
@@ -769,9 +852,46 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
 
 
 
-## 5.7 EditingPulse structure
+## 5.7 Editing Pulse information structure
 
-Array of JSON objects under the key header “EditingPulse” for defining sequence blocks for basis spectra simulation. Sequence type can be derived from the coherence filter property. Each element of the array should contain a JSON object with the following fields.
+A formalism for containing information about editing conditions.
+
+
+<table>
+  <tr>
+   <td><strong>Key</strong>
+   </td>
+   <td><strong>Datatype</strong>
+   </td>
+   <td><strong>Description</strong>
+   </td>
+   <td><strong>Anon (Y/N)</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>EditCondition
+   </td>
+   <td>Array of strings
+   </td>
+   <td>List of strings that index the entries of the EditPulse structure that are used in this data acquisition. Typically used in dynamic headers (dim_N_header).
+   </td>
+   <td>N
+   </td>
+  </tr>
+  <tr>
+   <td>EditPulse
+   </td>
+   <td>JSON Object
+   </td>
+   <td>Structure defining editing pulse parameters for each condition. Each condition must be assigned a key.
+   </td>
+   <td>N
+   </td>
+  </tr>
+</table>
+
+
+Each condition is listed as an element in an array of JSON objects under the key “EditPulse”. Each value of the object is defined with the following optional fields.
 
 
 <table>
@@ -784,7 +904,7 @@ Array of JSON objects under the key header “EditingPulse” for defining seque
    </td>
   </tr>
   <tr>
-   <td>Offset
+   <td>PulseOffset
    </td>
    <td>number
    </td>
@@ -826,10 +946,47 @@ Array of JSON objects under the key header “EditingPulse” for defining seque
 </table>
 
 
+For example with MEGA-PRESS data the header extension could contain the following:
 
-## 5.8 SequenceBlock structure
 
-Array of JSON objects under the key header “SequenceBlocks” for defining sequence blocks for basis spectra simulation. Sequence type can be derived from the coherence filter property. Each element of the array should contain a JSON object with the following fields.
+    “dim_7”: “DIM_EDIT”
+    “dim_7_info”: “j-difference editing, two conditions”
+    “dim_7_header”: { “EditCondition” : [ “ON”, “OFF”]},
+
+    “EditPulse”: { “ON” : { “PulseOffset” : 1.9},
+                   “OFF” : { “PulseOffset” : 7.8}}
+
+This would identify the last (7th) dimension as having a size of two, with the first index corresponding to the on-resonance saturation condition, and the second index to the control condition.
+
+
+## 5.8 Processing Provenance
+
+
+<table>
+  <tr>
+   <td><strong>Key</strong>
+   </td>
+   <td><strong>Datatype</strong>
+   </td>
+   <td><strong>Description</strong>
+   </td>
+   <td><strong>Anon (Y/N)</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>ProcessingApplied
+   </td>
+   <td>Array of JSON Objects
+   </td>
+   <td>Array of objects as defined below. Describes and records the processing steps applied to the data.
+   </td>
+   <td>Y
+   </td>
+  </tr>
+</table>
+
+
+An array for storing a record of processing steps applied to the data. Each element of the array takes the structure described below. Processing steps can be specified in an arbitrary separate file indicated by the ‘Link’ field.
 
 
 <table>
@@ -842,83 +999,88 @@ Array of JSON objects under the key header “SequenceBlocks” for defining seq
    </td>
   </tr>
   <tr>
-   <td>Offset
+   <td>Time
    </td>
-   <td>number
+   <td>String:  “YYYY-MM-DDThh:mm:ss.sss”
    </td>
-   <td>ppm
-   </td>
-  </tr>
-  <tr>
-   <td>PulseAmplitude
-   </td>
-   <td>Array of numbers
-   </td>
-   <td>Amplitude modulation in Hz 
+   <td>Time and date of processing step. <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> compliant format
    </td>
   </tr>
   <tr>
-   <td>PulsePhase
-   </td>
-   <td>Array of numbers
-   </td>
-   <td>Phase modulation in radians 
-   </td>
-  </tr>
-  <tr>
-   <td>Nucleus
+   <td>Program
    </td>
    <td>String
    </td>
-   <td>Nucleus
+   <td>Processing program used
    </td>
   </tr>
   <tr>
-   <td>PulseGradient
+   <td>Version
    </td>
-   <td>1x3 Array of numbers
+   <td>String
    </td>
-   <td>Gradients applied during pulse on each axis. Units:  mT/m
-   </td>
-  </tr>
-  <tr>
-   <td>PulseDuration
-   </td>
-   <td>number
-   </td>
-   <td>Pulse duration in seconds
+   <td>Version of program used
    </td>
   </tr>
   <tr>
-   <td>FlipAngle
+   <td>Method
    </td>
-   <td>number
+   <td>String
    </td>
-   <td>Pulse target flip-angle. Units: degrees
-   </td>
-  </tr>
-  <tr>
-   <td>Delay
-   </td>
-   <td>number
-   </td>
-   <td>Time in seconds between the end of the pulse and start of next block
+   <td>Description of processing step applied. See list in this section for fixed definitions.
    </td>
   </tr>
   <tr>
-   <td>RephaseArea
+   <td>Details
    </td>
-   <td>1x3 Array of numbers
+   <td>String
    </td>
-   <td>Gradient rephase areas applied during delay time after each pulse. mT.ms/m
+   <td>Optional program specific details.
    </td>
   </tr>
   <tr>
-   <td>CoherenceFilter
+   <td>Link
    </td>
-   <td>number 
+   <td>
    </td>
-   <td>Coherence order filter to apply at the end of each block. If absent no filter is applied.
+   <td>File path (either/or)
+   </td>
+  </tr>
+</table>
+
+
+The ‘Method’ field can take arbitrary string values but where possible users should adhere to the keywords given in tables 2,3 and 4 of _Near et al _(NMR in Biomedicine n/a:e4257 doi:[ 10.1002/nbm.4257](https://doi.org/10.1002/nbm.4257))_. _ These keywords are reproduced below.
+
+
+<table>
+  <tr>
+   <td>Eddy current correction
+   </td>
+   <td>Signal averaging
+   </td>
+  </tr>
+  <tr>
+   <td>Frequency and phase correction
+   </td>
+   <td>Phasing
+   </td>
+  </tr>
+  <tr>
+   <td>Alignment of subtraction sub-spectra
+   </td>
+   <td>Apodization
+   </td>
+  </tr>
+  <tr>
+   <td>Nuisance peak removal
+   </td>
+   <td>Zero-filling
+   </td>
+  </tr>
+  <tr>
+   <td>RF coil combination
+   </td>
+   <td>
    </td>
   </tr>
 </table>
