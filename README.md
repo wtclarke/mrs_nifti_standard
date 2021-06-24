@@ -3,15 +3,37 @@
 This is a repository to store information and code associated with the efforts to define an in vivo magnetic resonance spectroscopy (MRS) NIfTI data format.
 
 ## Why?
-Users of MRS and MRSI are faced with numerous data formats. Often vendor-specific expertise is needed to interpret, reconstruct, and analyse MRS data. Other users rely on disparate software, with inconsistent implementations. Furthermore, there is no accepted format for sharing or storing spectral data. Researchers cannot easily interpret data processed in another laboratory, nor can data be made “open” in a consistent format.
+Users of MRS and magnetic resonance spectroscopic imaging (MRSI) are faced with numerous data formats. Often vendor-specific expertise is needed to interpret, reconstruct, and analyse MRS data. Other users rely on disparate software, with inconsistent implementations. Furthermore, there is no accepted format for sharing or storing spectral data. Researchers cannot easily interpret data processed in another laboratory, nor can data be made “open” in a consistent format.
 
 ## Why NIfTI?
-NIfTI has been chosen due to its simplicity, availability of supporting libraries, ubiquity in the neuroimaging community, and extensive pre-existing support. Moreover, the results of spectral fitting can trivially be stored as unmodified NIfTI images.
+NIfTI has been chosen due to its simplicity, availability of supporting libraries, ubiquity in the neuroimaging community, and extensive pre-existing support. Moreover, the results of spectral fitting can trivially be stored as unmodified NIfTI images. As a result data, results, and associated imaging can all be held and viewed using a single format.
 
-## NIfTI MRS
+## NIfTI-MRS
 The provisional format specification can be found in this repository as a markdown file (specification.md). A working copy with the facility to comment and propose changes can be found [here](https://docs.google.com/document/d/1tC4ugzGUPLoqHRGrWvOcGCuCh_Dogx_uu0cxKub0EsM/edit?usp=sharing).
 
-A discussion on the format is ongoing at the [MRSHub forums](https://forum.mrshub.org/t/bids-for-spectroscopy/83/42). We are also holding regular meetings, get in contact via the MRSHub discussion if you would like to get involved.
+A discussion on the format is ongoing at the [MRSHub forums](https://forum.mrshub.org/t/nifti-mrs-discussion-thread/443). Note that this thread has been split off from a longer one on the proposed [MRS BIDS format](https://forum.mrshub.org/t/bids-for-spectroscopy/83/42). We are also holding regular meetings, get in contact via the MRSHub discussion or email if you would like to get involved.
+
+## Conversion of data to NIfTI-MRS
+Conversion of data can be carried out manually, but a separate project, [spec2nii](https://github.com/wexeee/spec2nii/tree/master/spec2nii), can be used for automatic conversion of data to the format.
+
+### spec2nii supported formats
+TO DO
+
+## Visualisation of NIfTI-MRS
+![image](documentation_images/fsleyes_mrsi_vis.png)
+*MRSI data stored as NIfTI-MRS displayed in FSLeyes alongside metabolite maps and spectral fits.*
+
+The NIfTI-MRS format can be viewed using the free NIfTI visualiser [FSLeyes](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FSLeyes). A [plugin](https://git.fmrib.ox.ac.uk/wclarke/fsleyes-plugin-mrs) developed by the standard's authors extends FSLeyes to:
+- interpret the higher dimensions of NIfTI-MRS,
+- provide information about the NIfTI-MRS headers, and
+- enable interactive phasing of spectral data.
+
+## Analysis packages supporting NIfTI-MRS
+This is a list of MRS analysis packages that are known to support NIfTI-MRS
+- FSL-MRS
+- Osprey (WIP)
+
+Minimal examples of interpreting NIfTI-MRS in are contained in Java, Python, MATALB, and R are included in the minimal_examples folder.
 
 ## This Repository
 The repository currently holds:
@@ -20,12 +42,13 @@ The repository currently holds:
 - Original data from which examples are generated.
 - Code in jupyter notebook format to generate the example data.
 - Links (via git submodules) to repositories containing minimal examples in java, matlab and R.
+- Manuscript, supporting information, figures, and figure generation code for the associated publication.
 
 All data is tracked using git LFS.
 
 ### Requirements
 To run the included python jupyter notebooks you will need:
-- spec2nii (development version)
+- spec2nii
 - pymapvbvd
 - nibabel
 - jupyter
@@ -34,13 +57,8 @@ To run the included python jupyter notebooks you will need:
 
 We recommend using conda to download the packages, and using python >=3.7.
 
-```conda install -c conda-forge jupyterlab pymapvbvd nibabel numpy h5py```
+```conda install -c conda-forge jupyterlab pymapvbvd nibabel numpy h5py spec2nii```
 
-### Installing spec2nii
-    git clone https://github.com/wexeee/spec2nii.git
-    cd spec2nii
-    git checkout nifti_mrs
-    pip install .
 
 
 
