@@ -1,0 +1,7 @@
+fsl-mrs
+spec2nii
+pymapvbvd
+nibabel
+jupyter
+numpy
+h5py
