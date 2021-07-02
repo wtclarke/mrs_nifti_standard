@@ -1,0 +1,14 @@
+#!/bin/sh
+spec2nii twix -q -o examples/mega -f metab_raw -e image data/meas_MID00113_FID127014_mega_press_TR2000_V1_.dat
+spec2nii twix -q -o examples/mega -f wref_internal -e phasecor data/meas_MID00113_FID127014_mega_press_TR2000_V1_.dat
+fsl_mrs_proc coilcombine --file examples/mega/metab_raw.nii.gz --reference examples/mega/wref_internal.nii.gz --output examples/mega --filename combined
+fsl_mrs_proc coilcombine --file examples/mega/wref_internal.nii.gz  --output examples/mega --filename combined_wref
+fsl_mrs_proc align --file examples/mega/combined.nii.gz --output examples/mega --filename aligned
+fsl_mrs_proc align-diff --file examples/mega/aligned.nii.gz --dim DIM_DYN --dim_diff DIM_EDIT --diff_type sub --output examples/mega --filename aligned2
+fsl_mrs_proc average --file examples/mega/aligned2.nii.gz --dim DIM_DYN --output examples/mega --filename avg
+fsl_mrs_proc ecc --file examples/mega/avg.nii.gz --reference examples/mega/combined_wref.nii.gz --output examples/mega --filename ecc
+fsl_mrs_proc truncate --file examples/mega/ecc.nii.gz --points -2 --pos first --output examples/mega --filename truncated
+fsl_mrs_proc phase  --file examples/mega/truncated.nii.gz --ppm 2.8 3.1 --output examples/mega --filename phased
+fsl_mrs_proc subtract --file examples/mega/phased.nii.gz --dim DIM_EDIT --output examples/mega --filename diff
+fsl_mrs_proc fixed_phase --file examples/mega/diff.nii.gz --p0 195 --output examples --filename example_10
+rm -rf examples/mega

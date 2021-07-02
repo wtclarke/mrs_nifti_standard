@@ -6,9 +6,9 @@ This file lists and explains the example data contained in this repository.
 Each file is names example_{n}.nii.gz according to this list.
 
 ### Single Voxel Data
-1. Manually converted SVS - sLASER
+1. Manually converted SVS - Water suppressed STEAM
 2. spec2nii converted SVS - Water suppressed STEAM
-3. spec2nii converted SVS - Water unsuppressed reference for STEAM
+3. spec2nii converted edited SVS - MEGA-PRESS
 
 ### MRSI Data
 4. Manually converted 31P FID-MRSI (CSI sequence)
@@ -30,4 +30,4 @@ Data required for example data generation can be downloaded from the associated 
 ### Code
 Scripts and interactive python notebooks for data generation can be found in the example_data/data_generation directory of this repository.
 
-The requirements are listed in requirements.txt. They can be installed using the conda package manager using ```conda install -c conda-forge --file requirements.txt```
+The requirements are listed in requirements.txt. They can be installed using the conda package manager using ```conda install -c conda-forge -c https://fsl.fmrib.ox.ac.uk/fsldownloads/fslconda/channel/ --file requirements.txt```

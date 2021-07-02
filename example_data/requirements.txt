@@ -2,6 +2,7 @@ fsl-mrs
 spec2nii
 pymapvbvd
 nibabel
-jupyter
+jupyterlab
+ipywidgets
 numpy
 h5py

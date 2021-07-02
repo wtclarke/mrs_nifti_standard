@@ -1,0 +1,2 @@
+#!/bin/sh
+spec2nii dicom -o examples -f example_05 data/F3T_2021_PH_016.MR.FMRIB_DEVELOPER_WILL.0004.0001.2021.07.01.16.43.12.374485.667204044.IMA

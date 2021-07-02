@@ -1,0 +1,6 @@
+#!/bin/sh
+spec2nii twix -e image --remove_os -o examples -f example_02 data/meas_MID310_STEAM_metab_FID115673.dat
+spec2nii twix -e image --remove_os -o examples -f example_03 data/meas_MID00113_FID127014_mega_press_TR2000_V1_.dat
+mrs_tools split --dim DIM_DYN --index 47 --output examples --filename example_03_split --file examples/example_03.nii.gz
+rm examples/example_03.nii.gz examples/example_03_split_2.nii.gz
+mv examples/example_03_split_1.nii.gz examples/example_03.nii.gz
