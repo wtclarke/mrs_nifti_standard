@@ -17,7 +17,26 @@ A discussion on the format is ongoing at the [MRSHub forums](https://forum.mrshu
 Conversion of data can be carried out manually, but a separate project, [spec2nii](https://github.com/wexeee/spec2nii/tree/master/spec2nii), can be used for automatic conversion of data to the format.
 
 ### spec2nii supported formats
-TO DO
+To see an up-to-date list of formats supported by spec2nii, see the [spec2nii README](https://github.com/wexeee/spec2nii/blob/master/README.md).
+
+The following table also summaries those formats supported.
+
+| Format        | File extension | SVS | CSI | Automatic orientation |
+|---------------|----------------|-----|-----|-----------------------|
+| Siemens Twix  | .dat           | Yes | No  | Yes                   |
+| Siemens DICOM | .ima / .dcm    | Yes | Yes | Yes                   |
+| Philips       | .SPAR/.SDAT    | Yes | No  | Yes                   |
+| Philips       | .data/.list    | Yes | No  | Yes                   |
+| Philips DICOM | .dcm           | Yes | No  | Yes (WIP)             |
+| GE            | .7 (pfile)     | Yes | Yes | Yes                   |
+| UIH DICOM     | .dcm           | Yes | Yes | Yes                   |
+| Bruker        | 2dseq          | Yes | Yes | Yes                   |
+| Bruker        | fid            | Yes | Yes | Yes (WIP)             |
+| Varian        | fid            | Yes | No  | No (WIP)              |
+| LCModel       | .RAW           | Yes | No  | No                    |
+| jMRUI         | .txt           | Yes | No  | No                    |
+| jMRUI         | .mrui          | Yes | No  | No                    |
+| ASCII         | .txt           | Yes | No  | No                    |
 
 ## Visualisation of NIfTI-MRS
 ![image](documentation_images/fsleyes_mrsi_vis.png)
@@ -53,10 +72,16 @@ To run the included python jupyter notebooks you will need:
 - jupyter
 - numpy
 - h5py
+- fsl-mrs
 
 We recommend using conda to download the packages, and using python >=3.7.
 
-```conda install -c conda-forge jupyterlab pymapvbvd nibabel numpy h5py spec2nii```
+```
+    conda install \
+    -c conda-forge \
+    -c defaults\
+    -c https://fsl.fmrib.ox.ac.uk/fsldownloads/fslconda/channel/ \
+    jupyterlab pymapvbvd nibabel numpy h5py spec2nii fsl-mrs```
 
 
 

@@ -35,16 +35,16 @@ In this document we propose a standard for the storage of MRS data as a NIfTI fi
 
 # 2 Specification
 
-The NIfTI format defines a binary file with filename extension “.nii” which optionally may be compressed e.g. “.nii.gz”. A NIfTI file comprises a header ([Official definition of the nifti1 header](https://nifti.nimh.nih.gov/pub/dist/src/niftilib/nifti1.h) / [nifti2.h](https://nifti.nimh.nih.gov/pub/dist/src/nifti2/nifti2.h)) followed by a multidimensional array of numerical data points. Optionally, one or more ‘header extensions’ may follow the header. The format of a header extension is indicated by a predefined ‘ecode’ number. NIfTI header keys will be distinguished in this document using a monospace font. For example, the first header value corresponds to the size of the header: `int sizeof_hdr`. All indexes are counted from zero, i.e. `pix_dim[0]` is the first element of the array and {N} should be substituted as 0, 1, 2….
+The NIfTI format defines a binary file with filename extension “.nii” which optionally may be compressed e.g. “.nii.gz”. A NIfTI file comprises a header ([Official definition of the nifti1 header](https://nifti.nimh.nih.gov/pub/dist/src/niftilib/nifti1.h) / [nifti2.h](https://nifti.nimh.nih.gov/pub/dist/src/nifti2/nifti2.h)) followed by a multidimensional array of numerical data points. Optionally, one or more ‘header extensions’ may follow the header. The format of a header extension is indicated by a predefined ‘ecode’ number. NIfTI header keys will be distinguished in this document using a highlighted font. For example, the first header value corresponds to the size of the header: `int sizeof_hdr`. All indexes are counted from zero, i.e. `pix_dim[0]` is the first element of the array and {N} should be substituted as 0, 1, 2….
 
 The NIfTI MRS format inherits all definitions from the NIfTI standard, with the following additional requirements:
 
 
 
-1. The intent name (`char intent_name[16]`) specifies conformance to a version of this standard using the format “mrs_vM_m_”_ (M=major version, m=minor version). For example “mrs_v0_2”.
+1. The intent name (`char intent_name[16]`) specifies conformance to a version of this standard using the format “mrs_vM_m” (M=major version, m=minor version). For example “mrs_v0_2”.
 2. Data points must be stored as 64bit (or higher precision) complex as indicated by `int datatype`. I.e. DT_COMPLEX, DT_COMPLEX64, or DT_COMPLEX128.
 3. NIfTI header orientation fields must be complete and populated as described in §2.2 Spatial Positioning and Orientation. 
-4. Required MRS metadata key/value pairs must be stored in a NIfTI header extension as a JavaScript Object Notation (JSON) formatted string. See_ _§2.3 MRS metadata_._
+4. Required MRS metadata key/value pairs must be stored in a NIfTI header extension as a JavaScript Object Notation (JSON) formatted string. See _§2.3 MRS metadata_.
 
 This standard prefers the NIfTI-2 format ([https://nifti.nimh.nih.gov/nifti-2](https://nifti.nimh.nih.gov/nifti-2)). Compared to NIfTI-1, NIfTI-2 implements a simplified header capable of storing 64-bit values. The NIfTI-1 format is acceptable for this standard but should be avoided where possible.
 
@@ -103,6 +103,11 @@ For conformance to this standard the JSONheader extension <span style="text-deco
 
 
 <table>
+  <colgroup>
+    <col width="25%">
+    <col width="25%">
+    <col width="50%">
+  </colgroup>
   <tr>
    <td><strong>Key</strong>
    </td>
@@ -132,8 +137,10 @@ For conformance to this standard the JSONheader extension <span style="text-deco
 
 More than one value is permitted for each of these keys to allow for multi-nuclei experiments. For example, a 1H-13C HSQC acquisition at 7T would have the following JSON entries:
 
-    “SpectrometerFrequency”:[300, 75.5]
-    “ResonantNucleus”:[“1H”, “13C”]
+```
+“SpectrometerFrequency”:[300, 75.5]
+“ResonantNucleus”:[“1H”, “13C”]
+```
 
 JSON metadata specified as an array of values (e.g. “Array of numbers”) must be given as an array even for single element arrays. I.e. “SpectrometerFrequency”:[300] not “SpectrometerFrequency”:300 in the previous example.
 
@@ -147,7 +154,6 @@ It is possible to store up to 7 dimensions of MRS data points in a NIfTI compati
 `short dim[8]` contains the sizes of the data array dimensions, with the first element (`dim[0]`) specifying the number of dimensions. In the previous example `dim[0]` would be set to 4 - which is the smallest permissible value for NIfTI MRS data. Data may be optionally stored across the remaining 3 dimensions, with these being used to store the following information by default:
 
 
-
 *   `dim[5]` - data from individual receiver coil elements,
 *   `dim[6]` - dynamic scans, more than one FID acquired sequentially (either prior to averaging, or for fMRS),
 *   `dim[7]` - the indirect dimension - required for storing MRS with two frequency axes (2D NMR).
@@ -158,6 +164,10 @@ The optional data dimensions may also be used to store alternative information (
 
 
 <table>
+  <colgroup>
+    <col width="30%">
+    <col width="70%">
+  </colgroup>
   <tr>
    <td><strong>Value</strong>
    </td>
@@ -216,24 +226,25 @@ The optional data dimensions may also be used to store alternative information (
 
 
 For example a 2D MRS scan with a FID length of 1024 points and 64 increments in the indirect dimension could be stored with data dimensions 1x1x1x1024x64, provided the following was specified in the JSON sidecar:
-
-    “dim_5”: “DIM_INDIRECT_0”
-
+```
+“dim_5”: “DIM_INDIRECT_0”
+```
 The use of each dimension as specified by keys in the “dim_5”, “dim_6” and “dim_7” fields, can be optionally made more explicit by utilising the optional “dim_5_info”, “dim_6_info” and “dim_7_info” fields. These fields may be freeform strings:
-
-    “dim_5”: “DIM_INDIRECT_0”
-    “dim_5_info”: “Echo time increment”
-
+```
+“dim_5”: “DIM_INDIRECT_0”
+“dim_5_info”: “Echo time increment”
+```
 If the dimension is used to increment over defined metadata key(s) then this can be conferred by using the optional “dim_5_header”, “dim_6_header” and “dim_7_header” fields with values stored as JSON arrays:
-
-    “dim_5”: “DIM_INDIRECT_0”
-    “dim_5_info”: “Echo time increment”
-    “dim_5_header”: {“EchoTime”: [0.03, 0.04, …, 0.10] }
-
+```
+“dim_5”: “DIM_INDIRECT_0”
+“dim_5_info”: “Echo time increment”
+“dim_5_header”: {“EchoTime”: [0.03, 0.04, …, 0.10] }
+```
 More than one metadata key can be specified using a JSON object:
-
-    “dim_5_header”: {“EchoTime”:  [0.03, 0.04, …, 0.10], “RepetitionTime”:  [1.0, 1.10, …, 2.00]}
-
+```
+“dim_5_header”: {“EchoTime”:  [0.03, 0.04, …, 0.10], 
+                 “RepetitionTime”:  [1.0, 1.10, …, 2.00]}
+```
 For more information and examples see §2.3.5 _Dynamically changing metadata_. Both the dim_{N}_info and dim_{N}_header keys are optional. Note that the sixth to eighth elements of pixdim (`pixdim[5], pixdim[6], pixdim[7]`) are not used for this purpose.
 
 
@@ -259,6 +270,11 @@ At either the top level or within the json object the key prefix “private_” 
 
 
 <table>
+  <colgroup>
+    <col width="30%">
+    <col width="30%">
+    <col width="40%">
+  </colgroup>
   <tr>
    <td><strong>Key</strong>
    </td>
@@ -296,24 +312,26 @@ At either the top level or within the json object the key prefix “private_” 
 
 Single-valued user meta-data should also use this format, providing a description to identify the purpose of the user-defined field. For example:
 
-
-    “Excitation pulse duration”: { “Value” : 3.0,
-                                   “Description” : “Duration of the excitation pulse.”}
+```
+“Excitation pulse duration”:
+    { “Value” : 3.0,
+      “Description” : “Duration of the excitation pulse.”}
+```
 
 Or for multiple related user-defined fields:
 
-
-    “Excitation pulse information”: { “Duration”: 3.0,
-                                      “Pulse name”: ”SINC”,
-                                      “Description” : “Excitation pulse information. Duration in ms.”}
-
+```
+“Excitation pulse information”: 
+    { “Duration”: 3.0,
+      “Pulse name”: ”SINC”,
+      “Description” : “Excitation pulse information. Duration in ms.”}
+```
 
 ### 2.3.5 Dynamically changing metadata
 
 The optional 5th, 6th and 7th data dimensions can store data acquired under dynamically changing acquisition conditions, e.g. with spectral editing or non-uniformly varying parameters. For example, the 5th dimension could be tagged DIM_INDIRECT_{N} or DIM_USER{N}, specifying a description in dim_5_info, and associating one or more metadata keys by specifying dim_5_header.
 
 The values of the associated metadata for each dimension index can then be specified in two ways. 
-
 
 
 1. For standard-defined metadata, the value at each dimension index can be described:
@@ -330,36 +348,44 @@ Example data is included in the official standard git repository alongside the d
 
 _Example 1: j-difference editing utilising a user-defined meta-data structure to define the position of the editing pulse. The data contains two conditions “ON” and “OFF” contained in dim 7 after an uncombined coils dimension and a dimension containing repeated averages._
 
-    “dim_5”: “DIM_COIL”
-    “dim_6”: “DIM_DYN”
-    “dim_7”: “DIM_EDIT”
-    “dim_7_info”: “j-difference editing, two conditions”
-    “dim_7_header”: {“EditCondition”: [ “ON”, “OFF”]},
+```
+“dim_5”: “DIM_COIL”
+“dim_6”: “DIM_DYN”
+“dim_7”: “DIM_EDIT”
+“dim_7_info”: “j-difference editing, two conditions”
+“dim_7_header”: {“EditCondition”: [ “ON”, “OFF”]},
+```
 
 _Example 2: j-evolution utilising a uniformly incremented TE evolution. The Echo time is specified in the shortened object form in dimension 6 (after a coils dimension)._
 
-    “dim_5”: “DIM_COIL”
-    “dim_6”: “DIM_INDIRECT_0”
-    “dim_6_info”: “Incremented echo time for j-evolution”
-    “dim_6_header”: {“EchoTime”: {“start”: 0.03, “increment”: 0.01}}
+```
+“dim_5”: “DIM_COIL”
+“dim_6”: “DIM_INDIRECT_0”
+“dim_6_info”: “Incremented echo time for j-evolution”
+“dim_6_header”: {“EchoTime”: {“start”: 0.03, “increment”: 0.01}}
+```
 
 _Example 3: j-evolution utilising a non-uniform incremented TE evolution. The Echo time is specified fully as an array in dimension 6 (after a coils dimension)._
-
-    “dim_5”: “DIM_COIL”
-    “dim_6”: “DIM_INDIRECT_0”
-    “dim_6_info”: “Incremented echo time for j-evolution”
-    “dim_6_header”: {“EchoTime”: [0.035, 0.036, 0.037, 0.04, … 0.125]}
+```
+“dim_5”: “DIM_COIL”
+“dim_6”: “DIM_INDIRECT_0”
+“dim_6_info”: “Incremented echo time for j-evolution”
+“dim_6_header”: {“EchoTime”: [0.035, 0.036, 0.037, 0.04, … 0.125]}
+```
 
 _Example 4: A fingerprinting based example. Dimension 5 is used to index changes across three standard-defined metadata keys (EchoTime, RepetitionTime, and ExcitationFlipAngle) as well as a user defined inversion/phase condition._
 
-    “dim_5”: “DIM_USER_0”
-    “dim_5_info”: “Acquisition index with variable TE, TR, flip-angle and pulse offset.”
-    “dim_5_header”: {“EchoTime”: [0.000, 0.001, 0.002, 0.005, … 0.090],
-                    “RepetitionTime”: [0.0, 0.1, 0.2, 0.1, … 0.0],
-                    “ExcitationFlipAngle”: [10, 20, 30, … 100],
-                    “Inv_condition”: { “Value” : [0, 180, …, 180],
-                    “Description” : “User defined inversion condition.”}}
-
+```
+“dim_5”: “DIM_USER_0”
+“dim_5_info”: “Acquisition index with variable TE, TR, flip-angle and pulse offset.”
+“dim_5_header”: 
+    {“EchoTime”: [0.000, 0.001, 0.002, 0.005, … 0.090],
+     “RepetitionTime”: [0.0, 0.1, 0.2, 0.1, … 0.0],
+     “ExcitationFlipAngle”: [10, 20, 30, … 100],
+     “Inv_condition”: 
+        {“Value” : [0, 180, …, 180],
+         “Description” : “User defined inversion condition.”}}
+```
 
 # 3 Resources
 
@@ -397,7 +423,7 @@ _Example 4: A fingerprinting based example. Dimension 5 is used to index changes
 The spectral data points are ordered in sequence of increasing time and contain the value TIME. \
 We define the DFT as 
 
-![image.png](https://numpy.org/doc/stable/_images/math/192fb50712b8530c868a329a12a27077c012daa9.svg) 
+![DFT](specification_images/dft_quater.png)
 
 to match the definition of Levitt (The Signs of Frequencies and Phases in NMR. Journal of Magnetic Resonance 1997;126:164–182 doi: [10.1006/jmre.1997.1161](https://doi.org/10.1006/jmre.1997.1161)), numpy and MATLAB.
 
@@ -407,7 +433,7 @@ _Note: In literature the frequency axis is often also plotted with a different f
 
 To match this convention we define a right-handed coordinate system.
 
-![image](specification_images/right-handed.png)
+![Right-handed coordinate system](specification_images/right-handed_half.png)
 
 with x corresponding to real values, y imaginary values, and z time. In this frame a positive rotation is defined as counter-clockwise looking down the time axis (shown in red). In this coordinate frame:
 
@@ -426,6 +452,12 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
 
 
 <table>
+  <colgroup>
+    <col width="20%">
+    <col width="20%">
+    <col width="10%">
+    <col width="50%">
+  </colgroup>
   <tr>
    <td><strong>Key</strong>
    </td>
@@ -566,6 +598,12 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
 
 
 <table>
+  <colgroup>
+    <col width="20%">
+    <col width="20%">
+    <col width="50%">
+    <col width="10%">
+  </colgroup>
   <tr>
    <td><strong>Key</strong>
    </td>
@@ -664,6 +702,12 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
 
 
 <table>
+  <colgroup>
+    <col width="20%">
+    <col width="20%">
+    <col width="50%">
+    <col width="10%">
+  </colgroup>
   <tr>
    <td><strong>Key</strong>
    </td>
@@ -702,6 +746,12 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
 
 
 <table>
+  <colgroup>
+    <col width="20%">
+    <col width="20%">
+    <col width="50%">
+    <col width="10%">
+  </colgroup>
   <tr>
    <td><strong>Key</strong>
    </td>
@@ -780,6 +830,12 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
 
 
 <table>
+  <colgroup>
+    <col width="20%">
+    <col width="20%">
+    <col width="50%">
+    <col width="10%">
+  </colgroup>
   <tr>
    <td><strong>Key</strong>
    </td>
@@ -828,6 +884,12 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
 
 
 <table>
+  <colgroup>
+    <col width="20%">
+    <col width="20%">
+    <col width="50%">
+    <col width="10%">
+  </colgroup>
   <tr>
    <td><strong>Key</strong>
    </td>
@@ -858,6 +920,12 @@ A formalism for containing information about editing conditions.
 
 
 <table>
+  <colgroup>
+    <col width="20%">
+    <col width="20%">
+    <col width="50%">
+    <col width="10%">
+  </colgroup>
   <tr>
    <td><strong>Key</strong>
    </td>
@@ -947,15 +1015,14 @@ Each condition is listed as an element in an array of JSON objects under the key
 
 
 For example with MEGA-PRESS data the header extension could contain the following:
+```
+“dim_7”: “DIM_EDIT”
+“dim_7_info”: “j-difference editing, two conditions”
+“dim_7_header”: { “EditCondition” : [ “ON”, “OFF”]},
 
-
-    “dim_7”: “DIM_EDIT”
-    “dim_7_info”: “j-difference editing, two conditions”
-    “dim_7_header”: { “EditCondition” : [ “ON”, “OFF”]},
-
-    “EditPulse”: { “ON” : { “PulseOffset” : 1.9},
-                   “OFF” : { “PulseOffset” : 7.8}}
-
+“EditPulse”: { “ON” : { “PulseOffset” : 1.9},
+               “OFF” : { “PulseOffset” : 7.8}}
+```
 This would identify the last (7th) dimension as having a size of two, with the first index corresponding to the on-resonance saturation condition, and the second index to the control condition.
 
 
@@ -963,6 +1030,12 @@ This would identify the last (7th) dimension as having a size of two, with the f
 
 
 <table>
+  <colgroup>
+    <col width="20%">
+    <col width="20%">
+    <col width="50%">
+    <col width="10%">
+  </colgroup>
   <tr>
    <td><strong>Key</strong>
    </td>
