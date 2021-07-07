@@ -1,4 +1,4 @@
 .ipynb_checkpoints
 .DS_Store
 example_data/data
-specification.pdf
+nifti_mrs_specification*.pdf

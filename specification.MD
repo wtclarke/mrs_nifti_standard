@@ -403,8 +403,8 @@ with x corresponding to real values, y imaginary values, and z time. In this fra
 
 In this coordinate frame:
 
-*   data arising from nuclei with a positive gyromagnetic ratio should be stored so that positive relative frequencies (on the absolute scale, relative to the spectrometer reference frequency) appear to have a positive (counter-clockwise) rotation.
-*   data arising from nuclei with a negative gyromagnetic ratio should be stored so that positive relative frequencies (on the absolute scale, relative to the spectrometer reference frequency) appear to have a negative (clockwise) rotation.
+*   data arising from nuclei with a positive gyromagnetic ratio should be stored so that positive relative frequencies (on the absolute frequency scale and relative to the spectrometer reference frequency) appear to have a positive (counter-clockwise) rotation.
+*   data arising from nuclei with a negative gyromagnetic ratio should be stored so that positive relative frequencies (on the absolute frequency scale and relative to the spectrometer reference frequency) appear to have a negative (clockwise) rotation.
 
 
 # 5 Appendix B: Specified JSON metadata tags

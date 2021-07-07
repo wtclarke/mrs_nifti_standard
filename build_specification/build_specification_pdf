@@ -1,2 +1,4 @@
 #!/bin/bash
-pandoc specification.MD -t html -o - | pandoc -f html --pdf-engine=xelatex -V geometry:margin=1in -V mainfont:Baskerville -o specification.pdf
+version=`git tag`
+echo "${version}"
+pandoc specification.MD -t html -o - | pandoc -f html --pdf-engine=xelatex -V geometry:margin=1in -V mainfont:Baskerville -o "nifti_mrs_specification_${version}.pdf"
