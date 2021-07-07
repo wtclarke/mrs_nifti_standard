@@ -90,7 +90,7 @@ The NIfTI standard cannot store spatially non-contiguous data. Data with slice-g
 
 In addition to the standard header of the binary NIfTI file, other MRS specific information can be stored in a NIfTI header extension. This metadata must be stored as key-value pairs in a JSON formatted text string. The header extension concept is specified in the [official NIfTI documentation.](https://nifti.nimh.nih.gov/nifti-1/documentation/nifti1fields/nifti1fields_pages/extension.html) The JSON formatted extension contains a set of key-value pairs (in any order), with some key names following a fixed dictionary defined herein.
 
-MRS data may be stored for a variety of purposes, from only requiring access to the raw FID data points, to storing geometry and acquisition details necessary to perform metabolite simulation and partial volume correction of metabolite concentrations.[^1]<sup>,</sup>[^2] This standard defines a minimum level of conformance required for meaningful interpretation of the data. Subsequently the standard defines a series of MRS metadata keys and groups of keys which are required to carry out certain analysis operations. Users may also include their own metadata keys, if not already a part of this standard, but must not redefine those defined in this standard.
+MRS data may be stored for a variety of purposes, from only requiring access to the raw FID data points, to storing geometry and acquisition details necessary to perform metabolite simulation and partial volume correction of metabolite concentrations.<sup>[1](#ref1), [2](#ref2)</sup> This standard defines a minimum level of conformance required for meaningful interpretation of the data. Subsequently the standard defines a series of MRS metadata keys and groups of keys which are required to carry out certain analysis operations. Users may also include their own metadata keys, if not already a part of this standard, but must not redefine those defined in this standard.
 
 The header extension consists of two mandatory fields (`int esize, ecode)` stored in the first 8 bytes, followed by the UTF-8 encoded byte representation of the JSON formatted metadata string. The whole extension (mandatory fields + JSON) must be padded to an integer multiple of 16 bytes. The size is then set as the value of `esize.` I.e.` esize` must be a positive integer multiple of 16. The `ecode` for the MRS NIfTI specification header extension is 44 (“NIfTI_ECODE_MRS”).
 
@@ -109,28 +109,19 @@ For conformance to this standard the JSONheader extension <span style="text-deco
     <col width="50%">
   </colgroup>
   <tr>
-   <td><strong>Key</strong>
-   </td>
-   <td><strong>Datatype</strong>
-   </td>
-   <td><strong>Description</strong>
-   </td>
+   <td><strong>Key</strong></td>
+   <td><strong>Datatype</strong></td>
+   <td><strong>Description</strong></td>
   </tr>
   <tr>
-   <td>SpectrometerFrequency
-   </td>
-   <td>Array of numbers
-   </td>
-   <td>Precession frequency in MHz of the nucleus being addressed for each spectral axis. See DICOM tag (0018,9098).
-   </td>
+   <td>SpectrometerFrequency</td>
+   <td>Array of numbers</td>
+   <td>Precession frequency in MHz of the nucleus being addressed for each spectral axis. See DICOM tag (0018,9098).</td>
   </tr>
   <tr>
-   <td>ResonantNucleus
-   </td>
-   <td>Array of strings
-   </td>
-   <td>See DICOM tag (0018,9100). Must be one of the DICOM recognised nuclei “1H”, “3HE”, “7LI”, “13C”, “19F”, “23NA”, “31P”, “129XE” or one named in the specified format. I.e. Mass number followed by the chemical symbol in uppercase.
-   </td>
+   <td>ResonantNucleus</td>
+   <td>Array of strings</td>
+   <td>See DICOM tag (0018,9100). Must be one of the DICOM recognised nuclei “1H”, “3HE”, “7LI”, “13C”, “19F”, “23NA”, “31P”, “129XE” or one named in the specified format. I.e. Mass number followed by the chemical symbol in uppercase.</td>
   </tr>
 </table>
 
@@ -169,58 +160,40 @@ The optional data dimensions may also be used to store alternative information (
     <col width="70%">
   </colgroup>
   <tr>
-   <td><strong>Value</strong>
-   </td>
-   <td><strong>Meaning</strong>
-   </td>
+   <td><strong>Value</strong></td>
+   <td><strong>Meaning</strong></td>
   </tr>
   <tr>
-   <td>“DIM_COIL”
-   </td>
-   <td>For storage of data from each individual receiver coil element.
-   </td>
+   <td>“DIM_COIL”</td>
+   <td>For storage of data from each individual receiver coil element.</td>
   </tr>
   <tr>
-   <td>“DIM_DYN”
-   </td>
-   <td>For storage of each individual acquisition transient. E.g. for post-acquisition B0 drift correction.
-   </td>
+   <td>“DIM_DYN”</td>
+   <td>For storage of each individual acquisition transient. E.g. for post-acquisition B0 drift correction.</td>
   </tr>
   <tr>
-   <td>“DIM_INDIRECT_{N}”
-   </td>
-   <td>The indirect detection dimension - necessary for 2D (and greater) MRS acquisitions. 
-   </td>
+   <td>“DIM_INDIRECT_{N}”</td>
+   <td>The indirect detection dimension - necessary for 2D (and greater) MRS acquisitions. </td>
   </tr>
   <tr>
-   <td>“DIM_PHASE_CYCLE”
-   </td>
-   <td>Used for the time-proportional phase incrementation method.
-   </td>
+   <td>“DIM_PHASE_CYCLE”</td>
+   <td>Used for the time-proportional phase incrementation method.</td>
   </tr>
   <tr>
-   <td>“DIM_EDIT”
-   </td>
-   <td>Used for edited MRS techniques such as MEGA or HERMES.
-   </td>
+   <td>“DIM_EDIT”</td>
+   <td>Used for edited MRS techniques such as MEGA or HERMES.</td>
   </tr>
   <tr>
-   <td>“DIM_MEAS”
-   </td>
-   <td>Used to indicate multiple repeats of the full sequence contained within the same original data file.
-   </td>
+   <td>“DIM_MEAS”</td>
+   <td>Used to indicate multiple repeats of the full sequence contained within the same original data file.</td>
   </tr>
   <tr>
-   <td>“DIM_USER_{N}”
-   </td>
-   <td>User defined dimension.
-   </td>
+   <td>“DIM_USER_{N}”</td>
+   <td>User defined dimension.</td>
   </tr>
   <tr>
-   <td>“DIM_ISIS”
-   </td>
-   <td>Dimension for storing image-selected in vivo spectroscopy (ISIS) acquisitions.
-   </td>
+   <td>“DIM_ISIS”</td>
+   <td>Dimension for storing image-selected in vivo spectroscopy (ISIS) acquisitions.</td>
   </tr>
 </table>
 
@@ -276,36 +249,24 @@ At either the top level or within the json object the key prefix “private_” 
     <col width="40%">
   </colgroup>
   <tr>
-   <td><strong>Key</strong>
-   </td>
-   <td><strong>Datatype</strong>
-   </td>
-   <td><strong>Description</strong>
-   </td>
+   <td><strong>Key</strong></td>
+   <td><strong>Datatype</strong></td>
+   <td><strong>Description</strong></td>
   </tr>
   <tr>
-   <td>{user_defined_key}
-   </td>
-   <td>Any, including nested JSON structures.
-   </td>
-   <td>Arbitrary user defined meta-data.
-   </td>
+   <td>{user_defined_key}</td>
+   <td>Any, including nested JSON structures.</td>
+   <td>Arbitrary user defined meta-data.</td>
   </tr>
   <tr>
-   <td>private_{user_defined_key}
-   </td>
-   <td>Any, including nested JSON structures.
-   </td>
-   <td>Arbitrary user defined meta-data. Should be removed upon anonymisation.
-   </td>
+   <td>private_{user_defined_key}</td>
+   <td>Any, including nested JSON structures.</td>
+   <td>Arbitrary user defined meta-data. Should be removed upon anonymisation.</td>
   </tr>
   <tr>
-   <td>Description
-   </td>
-   <td>String
-   </td>
-   <td>Freeform description of the user defined key.
-   </td>
+   <td>Description</td>
+   <td>String</td>
+   <td>Freeform description of the user defined key.</td>
   </tr>
 </table>
 
@@ -420,24 +381,27 @@ _Example 4: A fingerprinting based example. Dimension 5 is used to index changes
 
 # 4 Appendix A: Complex data phase conventions
 
-The spectral data points are ordered in sequence of increasing time and contain the value TIME. \
-We define the DFT as 
+NIfTI-MRS Follows the conventions of Levitt (The Signs of Frequencies and Phases in NMR. Journal of Magnetic Resonance 1997;126:164–182 doi: [10.1006/jmre.1997.1161](https://doi.org/10.1006/jmre.1997.1161)). In this convention the absolute frequency scale should increase from left to right, noting that _ω_=_-γB<sub>0</sub>_.
 
-![DFT](specification_images/dft_quater.png)
+This means for nuclei with a gyromagnetic ratio > 0 (e.g. <sup>1</sup>H) this corresponds to resonances from nuclei with less shielding (more deshielding), which therefore experiencing a higher magnetic field, appearing on the left. I.e. they have more negative (higher magnitude) Larmor frequencies.
 
-to match the definition of Levitt (The Signs of Frequencies and Phases in NMR. Journal of Magnetic Resonance 1997;126:164–182 doi: [10.1006/jmre.1997.1161](https://doi.org/10.1006/jmre.1997.1161)), numpy and MATLAB.
+We also define the DFT as 
 
-Following the conventions of Levitt the frequency scale should increase from left to right. For nuclei with a gyromagnetic ratio > 0 (e.g. <sup>1</sup>H) this corresponds to resonances from nuclei with less shielding (more deshielding) and therefore experiencing a higher magnetic field appearing on the left. I.e. they have more negative (higher magnitude) Larmor frequencies noting that _ω_=_-γB<sub>0</sub>_.
+<img src="specification_images/dft_quater.png" alt="DFT" width="300"/>
+
+to match the definition of Levitt , Numpy and MATLAB.
 
 _Note: In literature the frequency axis is often also plotted with a different frequency scale showing more positive relative frequencies on the left. This preserves the orientation of the spectrum but corresponds to a scale equal to |ω|−|ω<sub>ref</sub>|._
 
-To match this convention we define a right-handed coordinate system.
+To comply with this convention we define a right-handed coordinate system.
 
-![Right-handed coordinate system](specification_images/right-handed_half.png)
+<p align="center">
+<img src="specification_images/right-handed.png" alt="Right-handed coordinate system" width="150"/>
+</p>
 
-with x corresponding to real values, y imaginary values, and z time. In this frame a positive rotation is defined as counter-clockwise looking down the time axis (shown in red). In this coordinate frame:
+with x corresponding to real values, y imaginary values, and z time. In this frame a positive rotation is defined as counter-clockwise looking down the time axis (shown in red). The spectral data points are ordered in sequence of increasing time.
 
-
+In this coordinate frame:
 
 *   data arising from nuclei with a positive gyromagnetic ratio should be stored so that positive relative frequencies (on the absolute scale, relative to the spectrometer reference frequency) appear to have a positive (counter-clockwise) rotation.
 *   data arising from nuclei with a negative gyromagnetic ratio should be stored so that positive relative frequencies (on the absolute scale, relative to the spectrometer reference frequency) appear to have a negative (clockwise) rotation.
@@ -459,136 +423,81 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
     <col width="50%">
   </colgroup>
   <tr>
-   <td><strong>Key</strong>
-   </td>
-   <td><strong>Datatype</strong>
-   </td>
-   <td><strong>Unit</strong>
-   </td>
-   <td><strong>Description</strong>
-   </td>
-   <td><strong>Anon (Y/N)</strong>
-   </td>
+   <td><strong>Key</strong></td>
+   <td><strong>Datatype</strong></td>
+   <td><strong>Unit</strong></td>
+   <td><strong>Description</strong></td>
+   <td><strong>Anon (Y/N)</strong></td>
   </tr>
   <tr>
-   <td>EchoTime
-   </td>
-   <td>number
-   </td>
-   <td>s
-   </td>
-   <td>Time from centroid of excitation to start of FID or centre of echo. Units: Seconds
-   </td>
-   <td>N
-   </td>
+   <td>EchoTime</td>
+   <td>number</td>
+   <td>s</td>
+   <td>Time from centroid of excitation to start of FID or centre of echo. Units: Seconds</td>
+   <td>N</td>
   </tr>
   <tr>
-   <td>RepetitionTime
-   </td>
-   <td>number
-   </td>
-   <td>s
-   </td>
-   <td>Sequence repetition time. Units: Seconds
-   </td>
-   <td>N
-   </td>
+   <td>RepetitionTime</td>
+   <td>number</td>
+   <td>s</td>
+   <td>Sequence repetition time. Units: Seconds</td>
+   <td>N</td>
   </tr>
   <tr>
-   <td>InversionTime
-   </td>
-   <td>number
-   </td>
-   <td>s
-   </td>
-   <td>Inversion time. Units: Seconds
-   </td>
-   <td>N
-   </td>
+   <td>InversionTime</td>
+   <td>number</td>
+   <td>s</td>
+   <td>Inversion time. Units: Seconds</td>
+   <td>N</td>
   </tr>
   <tr>
-   <td>MixingTime
-   </td>
-   <td>number
-   </td>
-   <td>s
-   </td>
-   <td>Mixing time in e.g. STEAM sequence. Units: Seconds
-   </td>
-   <td>N
-   </td>
+   <td>MixingTime</td>
+   <td>number</td>
+   <td>s</td>
+   <td>Mixing time in e.g. STEAM sequence. Units: Seconds</td>
+   <td>N</td>
   </tr>
   <tr>
-   <td>ExcitationFlipAngle
-   </td>
-   <td>number
-   </td>
-   <td>degrees
-   </td>
-   <td>Nominal excitation pulse flip-angle 
-   </td>
-   <td>N
-   </td>
+   <td>ExcitationFlipAngle</td>
+   <td>number</td>
+   <td>degrees</td>
+   <td>Nominal excitation pulse flip-angle </td>
+   <td>N</td>
   </tr>
   <tr>
-   <td>TxOffset
-   </td>
-   <td>number
-   </td>
-   <td>ppm
-   </td>
-   <td>Transmit chemical shift offset from SpectrometerFrequency
-   </td>
-   <td>N
-   </td>
+   <td>TxOffset</td>
+   <td>number</td>
+   <td>ppm</td>
+   <td>Transmit chemical shift offset from SpectrometerFrequency</td>
+   <td>N</td>
   </tr>
   <tr>
-   <td>VOI
-   </td>
-   <td>[number]
-   </td>
-   <td>-
-   </td>
-   <td>VoI localisation volume for MRSI sequences. Stored as a 4 x 4 affine using identical conventions to the xform NIfTI affine matrix. Not defined for data stored with a single spatial voxel.
-   </td>
-   <td>N
-   </td>
+   <td>VOI</td>
+   <td>[number]</td>
+   <td>-</td>
+   <td>VoI localisation volume for MRSI sequences. Stored as a 4 x 4 affine using identical conventions to the xform NIfTI affine matrix. Not defined for data stored with a single spatial voxel.</td>
+   <td>N</td>
   </tr>
   <tr>
-   <td>WaterSuppressed
-   </td>
-   <td>bool
-   </td>
-   <td>-
-   </td>
-   <td>Boolian value indicating whether data was collected with (True) or without (False) water suppression.
-   </td>
-   <td>N
-   </td>
+   <td>WaterSuppressed</td>
+   <td>bool</td>
+   <td>-</td>
+   <td>Boolian value indicating whether data was collected with (True) or without (False) water suppression.</td>
+   <td>N</td>
   </tr>
   <tr>
-   <td>WaterSuppressionType
-   </td>
-   <td>string
-   </td>
-   <td>-
-   </td>
-   <td>Type of water suppression used. 
-   </td>
-   <td>N
-   </td>
+   <td>WaterSuppressionType</td>
+   <td>string</td>
+   <td>-</td>
+   <td>Type of water suppression used. </td>
+   <td>N</td>
   </tr>
   <tr>
-   <td>SequenceTriggered
-   </td>
-   <td>bool
-   </td>
-   <td>-
-   </td>
-   <td>Boolian value indicating whether the sequence is triggered. If triggered the repetition time might not be constant.
-   </td>
-   <td>N
-   </td>
+   <td>SequenceTriggered</td>
+   <td>bool</td>
+   <td>-</td>
+   <td>Boolian value indicating whether the sequence is triggered. If triggered the repetition time might not be constant.</td>
+   <td>N</td>
   </tr>
 </table>
 
@@ -599,107 +508,68 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
 
 <table>
   <colgroup>
-    <col width="20%">
-    <col width="20%">
+    <col width="25%">
+    <col width="10%">
     <col width="50%">
     <col width="10%">
   </colgroup>
   <tr>
-   <td><strong>Key</strong>
-   </td>
-   <td><strong>Datatype</strong>
-   </td>
-   <td><strong>Description</strong>
-   </td>
-   <td><strong>Anon (Y/N)</strong>
-   </td>
+   <td><strong>Key</strong></td>
+   <td><strong>Datatype</strong></td>
+   <td><strong>Description</strong></td>
+   <td><strong>Anon (Y/N)</strong></td>
   </tr>
   <tr>
-   <td>Manufacturer
-   </td>
-   <td>String
-   </td>
-   <td>Manufacturer of the device. DICOM (0008,0070).
-   </td>
-   <td>N
-   </td>
+   <td>Manufacturer</td>
+   <td>String</td>
+   <td>Manufacturer of the device. DICOM (0008,0070).</td>
+   <td>N</td>
   </tr>
   <tr>
-   <td>ManufacturersModelName
-   </td>
-   <td>String
-   </td>
-   <td>Manufacturer's model name of the device. DICOM (0008,1090).
-   </td>
-   <td>N
-   </td>
+   <td>ManufacturersModelName</td>
+   <td>String</td>
+   <td>Manufacturer's model name of the device. DICOM (0008,1090).</td>
+   <td>N</td>
   </tr>
   <tr>
-   <td>DeviceSerialNumber
-   </td>
-   <td>String
-   </td>
-   <td>Manufacturer's serial number of the device. DICOM (0018,1000).
-   </td>
-   <td>Y
-   </td>
+   <td>DeviceSerialNumber</td>
+   <td>String</td>
+   <td>Manufacturer's serial number of the device. DICOM (0018,1000).</td>
+   <td>Y</td>
   </tr>
   <tr>
-   <td>SoftwareVersions
-   </td>
-   <td>String
-   </td>
-   <td>Manufacturer's designation of the software version. DICOM (0018,1020)
-   </td>
-   <td>N
-   </td>
+   <td>SoftwareVersions</td>
+   <td>String</td>
+   <td>Manufacturer's designation of the software version. DICOM (0018,1020)</td>
+   <td>N</td>
   </tr>
   <tr>
-   <td>InstitutionName
-   </td>
-   <td>String
-   </td>
-   <td>Institution’s Name. DICOM (0008,0080).
-   </td>
-   <td>Y
-   </td>
+   <td>InstitutionName</td>
+   <td>String</td>
+   <td>Institution’s Name. DICOM (0008,0080).</td>
+   <td>Y</td>
   </tr>
   <tr>
-   <td>InstitutionAddress
-   </td>
-   <td>String
-   </td>
-   <td>Institution’s address. DICOM (0008,0081).
-   </td>
-   <td>Y
-   </td>
+   <td>InstitutionAddress</td>
+   <td>String</td>
+   <td>Institution’s address. DICOM (0008,0081).</td>
+   <td>Y</td>
   </tr>
   <tr>
-   <td>TxCoil
-   </td>
-   <td>String
-   </td>
-   <td>Name of transmit RF coil.
-   </td>
-   <td>N
-   </td>
+   <td>TxCoil</td>
+   <td>String</td>
+   <td>Name of transmit RF coil.</td>
+   <td>N</td>
   </tr>
   <tr>
-   <td>RxCoil
-   </td>
-   <td>String
-   </td>
-   <td>Name of receive RF coil
-   </td>
-   <td>N
-   </td>
+   <td>RxCoil</td>
+   <td>String</td>
+   <td>Name of receive RF coil</td>
+   <td>N</td>
   </tr>
 </table>
 
-
-
 ## 5.3 Sequence information
-
 
 <table>
   <colgroup>
@@ -709,34 +579,22 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
     <col width="10%">
   </colgroup>
   <tr>
-   <td><strong>Key</strong>
-   </td>
-   <td><strong>Datatype</strong>
-   </td>
-   <td><strong>Description</strong>
-   </td>
-   <td><strong>Anon (Y/N)</strong>
-   </td>
+   <td><strong>Key</strong></td>
+   <td><strong>Datatype</strong></td>
+   <td><strong>Description</strong></td>
+   <td><strong>Anon (Y/N)</strong></td>
   </tr>
   <tr>
-   <td>SequenceName
-   </td>
-   <td>String
-   </td>
-   <td>User defined name. DICOM (0018,0024).
-   </td>
-   <td>N
-   </td>
+   <td>SequenceName</td>
+   <td>String</td>
+   <td>User defined name. DICOM (0018,0024).</td>
+   <td>N</td>
   </tr>
   <tr>
-   <td>ProtocolName
-   </td>
-   <td>String
-   </td>
-   <td>User-defined description of the conditions under which the Series was performed. DICOM (0018,1030).
-   </td>
-   <td>N
-   </td>
+   <td>ProtocolName</td>
+   <td>String</td>
+   <td>User-defined description of the conditions under which the Series was performed. DICOM (0018,1030).</td>
+   <td>N</td>
   </tr>
 </table>
 
@@ -753,74 +611,46 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
     <col width="10%">
   </colgroup>
   <tr>
-   <td><strong>Key</strong>
-   </td>
-   <td><strong>Datatype</strong>
-   </td>
-   <td><strong>Description</strong>
-   </td>
-   <td><strong>Anon (Y/N)</strong>
-   </td>
+   <td><strong>Key</strong></td>
+   <td><strong>Datatype</strong></td>
+   <td><strong>Description</strong></td>
+   <td><strong>Anon (Y/N)</strong></td>
   </tr>
   <tr>
-   <td>PatientPosition
-   </td>
-   <td>String
-   </td>
-   <td>Patient position descriptor relative to the equipment. DICOM (0018,5100). Must be one of the DICOM defined code strings e.g. HFS, HFP.
-   </td>
-   <td>N
-   </td>
+   <td>PatientPosition</td>
+   <td>String</td>
+   <td>Patient position descriptor relative to the equipment. DICOM (0018,5100). Must be one of the DICOM defined code strings e.g. HFS, HFP.</td>
+   <td>N</td>
   </tr>
   <tr>
-   <td>PatientName
-   </td>
-   <td>String
-   </td>
-   <td>Patient's full name. DICOM (0010,0010).
-   </td>
-   <td>Y
-   </td>
+   <td>PatientName</td>
+   <td>String</td>
+   <td>Patient's full name. DICOM (0010,0010).</td>
+   <td>Y</td>
   </tr>
   <tr>
-   <td>PatientID
-   </td>
-   <td>String
-   </td>
-   <td>Patient's ID. DICOM (0010,0020).
-   </td>
-   <td>Y
-   </td>
+   <td>PatientID</td>
+   <td>String</td>
+   <td>Patient's ID. DICOM (0010,0020).</td>
+   <td>Y</td>
   </tr>
   <tr>
-   <td>PatientWeight
-   </td>
-   <td>Number
-   </td>
-   <td>Weight of the Patient in kilograms. DICOM (0010,1030).
-   </td>
-   <td>N
-   </td>
+   <td>PatientWeight</td>
+   <td>Number</td>
+   <td>Weight of the Patient in kilograms. DICOM (0010,1030).</td>
+   <td>N</td>
   </tr>
   <tr>
-   <td>PatientDoB
-   </td>
-   <td>String
-   </td>
-   <td>Date of birth of the named Patient. YYYYMMDD. DICOM (0010,0030).
-   </td>
-   <td>Y
-   </td>
+   <td>PatientDoB</td>
+   <td>String</td>
+   <td>Date of birth of the named Patient. YYYYMMDD. DICOM (0010,0030).</td>
+   <td>Y</td>
   </tr>
   <tr>
-   <td>PatientSex
-   </td>
-   <td>String
-   </td>
-   <td>Sex of the named Patient. ‘M’, ‘F’, ‘O’. DICOM (0010,0040)
-   </td>
-   <td>N
-   </td>
+   <td>PatientSex</td>
+   <td>String</td>
+   <td>Sex of the named Patient. ‘M’, ‘F’, ‘O’. DICOM (0010,0040)</td>
+   <td>N</td>
   </tr>
 </table>
 
@@ -837,44 +667,28 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
     <col width="10%">
   </colgroup>
   <tr>
-   <td><strong>Key</strong>
-   </td>
-   <td><strong>Datatype</strong>
-   </td>
-   <td><strong>Description</strong>
-   </td>
-   <td><strong>Anon (Y/N)</strong>
-   </td>
+   <td><strong>Key</strong></td>
+   <td><strong>Datatype</strong></td>
+   <td><strong>Description</strong></td>
+   <td><strong>Anon (Y/N)</strong></td>
   </tr>
   <tr>
-   <td>ConversionMethod
-   </td>
-   <td>String
-   </td>
-   <td>Program used for conversion. May include additional information like software version.
-   </td>
-   <td>N
-   </td>
+   <td>ConversionMethod</td>
+   <td>String</td>
+   <td>Program used for conversion. May include additional information like software version.</td>
+   <td>N</td>
   </tr>
   <tr>
-   <td>ConversionTime
-   </td>
-   <td>String:  “YYYY-MM-DDThh:mm:ss.sss”
-   </td>
-   <td>Time and date of conversion. <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> compliant format
-   </td>
-   <td>N
-   </td>
+   <td>ConversionTime</td>
+   <td>String:  “YYYY-MM-DDThh:mm:ss.sss”</td>
+   <td>Time and date of conversion. <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> compliant format</td>
+   <td>N</td>
   </tr>
   <tr>
-   <td>OriginalFile
-   </td>
-   <td>Array of Strings
-   </td>
-   <td>Name and extension of the original file(s)
-   </td>
-   <td>Y
-   </td>
+   <td>OriginalFile</td>
+   <td>Array of Strings</td>
+   <td>Name and extension of the original file(s)</td>
+   <td>Y</td>
   </tr>
 </table>
 
@@ -891,24 +705,16 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
     <col width="10%">
   </colgroup>
   <tr>
-   <td><strong>Key</strong>
-   </td>
-   <td><strong>Datatype</strong>
-   </td>
-   <td><strong>Description</strong>
-   </td>
-   <td><strong>Anon (Y/N)</strong>
-   </td>
+   <td><strong>Key</strong></td>
+   <td><strong>Datatype</strong></td>
+   <td><strong>Description</strong></td>
+   <td><strong>Anon (Y/N)</strong></td>
   </tr>
   <tr>
-   <td>kSpace
-   </td>
-   <td>Array of booleans
-   </td>
-   <td>Three element list, corresponding to the first three spatial dimensions. If True the data is stored as a dense k-space representation.
-   </td>
-   <td>N
-   </td>
+   <td>kSpace</td>
+   <td>Array of booleans</td>
+   <td>Three element list, corresponding to the first three spatial dimensions. If True the data is stored as a dense k-space representation.</td>
+   <td>N</td>
   </tr>
 </table>
 
@@ -927,34 +733,22 @@ A formalism for containing information about editing conditions.
     <col width="10%">
   </colgroup>
   <tr>
-   <td><strong>Key</strong>
-   </td>
-   <td><strong>Datatype</strong>
-   </td>
-   <td><strong>Description</strong>
-   </td>
-   <td><strong>Anon (Y/N)</strong>
-   </td>
+   <td><strong>Key</strong></td>
+   <td><strong>Datatype</strong></td>
+   <td><strong>Description</strong></td>
+   <td><strong>Anon (Y/N)</strong></td>
   </tr>
   <tr>
-   <td>EditCondition
-   </td>
-   <td>Array of strings
-   </td>
-   <td>List of strings that index the entries of the EditPulse structure that are used in this data acquisition. Typically used in dynamic headers (dim_N_header).
-   </td>
-   <td>N
-   </td>
+   <td>EditCondition</td>
+   <td>Array of strings</td>
+   <td>List of strings that index the entries of the EditPulse structure that are used in this data acquisition. Typically used in dynamic headers (dim_N_header).</td>
+   <td>N</td>
   </tr>
   <tr>
-   <td>EditPulse
-   </td>
-   <td>JSON Object
-   </td>
-   <td>Structure defining editing pulse parameters for each condition. Each condition must be assigned a key.
-   </td>
-   <td>N
-   </td>
+   <td>EditPulse</td>
+   <td>JSON Object</td>
+   <td>Structure defining editing pulse parameters for each condition. Each condition must be assigned a key.</td>
+   <td>N</td>
   </tr>
 </table>
 
@@ -964,52 +758,34 @@ Each condition is listed as an element in an array of JSON objects under the key
 
 <table>
   <tr>
-   <td><strong>Key</strong>
-   </td>
-   <td><strong>Datatype</strong>
-   </td>
-   <td><strong>Description</strong>
-   </td>
+   <td><strong>Key</strong></td>
+   <td><strong>Datatype</strong></td>
+   <td><strong>Description</strong></td>
   </tr>
   <tr>
-   <td>PulseOffset
-   </td>
-   <td>number
-   </td>
-   <td>ppm
-   </td>
+   <td>PulseOffset</td>
+   <td>number</td>
+   <td>ppm</td>
   </tr>
   <tr>
-   <td>PulseAmplitude
-   </td>
-   <td>Array of numbers
-   </td>
-   <td>Amplitude modulation in Hz 
-   </td>
+   <td>PulseAmplitude</td>
+   <td>Array of numbers</td>
+   <td>Amplitude modulation in Hz </td>
   </tr>
   <tr>
-   <td>PulsePhase
-   </td>
-   <td>Array of numbers
-   </td>
-   <td>Phase modulation in radians 
-   </td>
+   <td>PulsePhase</td>
+   <td>Array of numbers</td>
+   <td>Phase modulation in radians </td>
   </tr>
   <tr>
-   <td>PulseDuration
-   </td>
-   <td>number
-   </td>
-   <td>Pulse duration in seconds
-   </td>
+   <td>PulseDuration</td>
+   <td>number</td>
+   <td>Pulse duration in seconds</td>
   </tr>
   <tr>
-   <td>Nucleus
-   </td>
-   <td>String
-   </td>
-   <td>Nucleus
-   </td>
+   <td>Nucleus</td>
+   <td>String</td>
+   <td>Nucleus</td>
   </tr>
 </table>
 
@@ -1037,24 +813,16 @@ This would identify the last (7th) dimension as having a size of two, with the f
     <col width="10%">
   </colgroup>
   <tr>
-   <td><strong>Key</strong>
-   </td>
-   <td><strong>Datatype</strong>
-   </td>
-   <td><strong>Description</strong>
-   </td>
-   <td><strong>Anon (Y/N)</strong>
-   </td>
+   <td><strong>Key</strong></td>
+   <td><strong>Datatype</strong></td>
+   <td><strong>Description</strong></td>
+   <td><strong>Anon (Y/N)</strong></td>
   </tr>
   <tr>
-   <td>ProcessingApplied
-   </td>
-   <td>Array of JSON Objects
-   </td>
-   <td>Array of objects as defined below. Describes and records the processing steps applied to the data.
-   </td>
-   <td>Y
-   </td>
+   <td>ProcessingApplied</td>
+   <td>Array of JSON Objects</td>
+   <td>Array of objects as defined below. Describes and records the processing steps applied to the data.</td>
+   <td>Y</td>
   </tr>
 </table>
 
@@ -1063,61 +831,45 @@ An array for storing a record of processing steps applied to the data. Each elem
 
 
 <table>
+  <colgroup>
+    <col width="20%">
+    <col width="20%">
+    <col width="60%">
+  </colgroup>
   <tr>
-   <td><strong>Key</strong>
-   </td>
-   <td><strong>Datatype</strong>
-   </td>
-   <td><strong>Description</strong>
-   </td>
+   <td><strong>Key</strong></td>
+   <td><strong>Datatype</strong></td>
+   <td><strong>Description</strong></td>
   </tr>
   <tr>
-   <td>Time
-   </td>
-   <td>String:  “YYYY-MM-DDThh:mm:ss.sss”
-   </td>
-   <td>Time and date of processing step. <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> compliant format
-   </td>
+   <td>Time</td>
+   <td>String:  “YYYY-MM-DDThh:mm:ss.sss”</td>
+   <td>Time and date of processing step. <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> compliant format</td>
   </tr>
   <tr>
-   <td>Program
-   </td>
-   <td>String
-   </td>
-   <td>Processing program used
-   </td>
+   <td>Program</td>
+   <td>String</td>
+   <td>Processing program used</td>
   </tr>
   <tr>
-   <td>Version
-   </td>
-   <td>String
-   </td>
-   <td>Version of program used
-   </td>
+   <td>Version</td>
+   <td>String</td>
+   <td>Version of program used</td>
   </tr>
   <tr>
-   <td>Method
-   </td>
-   <td>String
-   </td>
-   <td>Description of processing step applied. See list in this section for fixed definitions.
-   </td>
+   <td>Method</td>
+   <td>String</td>
+   <td>Description of processing step applied. See list in this section for fixed definitions.</td>
   </tr>
   <tr>
-   <td>Details
-   </td>
-   <td>String
-   </td>
-   <td>Optional program specific details.
-   </td>
+   <td>Details</td>
+   <td>String</td>
+   <td>Optional program specific details.</td>
   </tr>
   <tr>
-   <td>Link
-   </td>
-   <td>
-   </td>
-   <td>File path (either/or)
-   </td>
+   <td>Link</td>
+   <td></td>
+   <td>File path (either/or)</td>
   </tr>
 </table>
 
@@ -1127,34 +879,24 @@ The ‘Method’ field can take arbitrary string values but where possible users
 
 <table>
   <tr>
-   <td>Eddy current correction
-   </td>
-   <td>Signal averaging
-   </td>
+   <td>Eddy current correction</td>
+   <td>Signal averaging</td>
   </tr>
   <tr>
-   <td>Frequency and phase correction
-   </td>
-   <td>Phasing
-   </td>
+   <td>Frequency and phase correction</td>
+   <td>Phasing</td>
   </tr>
   <tr>
-   <td>Alignment of subtraction sub-spectra
-   </td>
-   <td>Apodization
-   </td>
+   <td>Alignment of subtraction sub-spectra</td>
+   <td>Apodization</td>
   </tr>
   <tr>
-   <td>Nuisance peak removal
-   </td>
-   <td>Zero-filling
-   </td>
+   <td>Nuisance peak removal</td>
+   <td>Zero-filling</td>
   </tr>
   <tr>
-   <td>RF coil combination
-   </td>
-   <td>
-   </td>
+   <td>RF coil combination</td>
+   <td>Subtraction / Addition of sub-spectra</td>
   </tr>
 </table>
 
@@ -1163,8 +905,6 @@ The ‘Method’ field can take arbitrary string values but where possible users
 <!-- Footnotes themselves at the bottom. -->
 ## Notes
 
-[^1]:
-     Gasparovic C, Song T, Devier D, et al. Use of tissue water as a concentration reference for proton spectroscopic imaging. Magnetic Resonance in Medicine 2006;55:1219–1226 doi:[ 10.1002/mrm.20901](https://doi.org/10.1002/mrm.20901).
+<a name="ref1">1</a>: Gasparovic C, Song T, Devier D, et al. Use of tissue water as a concentration reference for proton spectroscopic imaging. Magnetic Resonance in Medicine 2006;55:1219–1226 doi:[ 10.1002/mrm.20901](https://doi.org/10.1002/mrm.20901).
 
-[^2]:
-     Gasparovic C, Chen H, Mullins PG. Errors in 1H-MRS estimates of brain metabolite concentrations caused by failing to take into account tissue-specific signal relaxation. NMR in Biomedicine 2018;31:e3914 doi:[ 10.1002/nbm.3914](https://doi.org/10.1002/nbm.3914).
+<a name="ref2">2</a>: Gasparovic C, Chen H, Mullins PG. Errors in 1H-MRS estimates of brain metabolite concentrations caused by failing to take into account tissue-specific signal relaxation. NMR in Biomedicine 2018;31:e3914 doi:[ 10.1002/nbm.3914](https://doi.org/10.1002/nbm.3914).

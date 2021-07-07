@@ -6,7 +6,7 @@ The PDF is built directly from the markdown formatted specification at the top l
 ```
     conda install -c conda-forge pandoc
 ```
-2. Run build_specification_pdf.
+2. Run build_specification_pdf from repository root directory
 
 ## Notes
 Pandoc conversion goes via html to ensure that the html tables in the markdown document are rendered correctly.
