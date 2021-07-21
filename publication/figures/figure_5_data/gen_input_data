@@ -1,0 +1,3 @@
+#!/bin/sh
+spec2nii twix -e image --remove_os -f raw_suppressed ../../../example_data/data/meas_MID310_STEAM_metab_FID115673.dat
+spec2nii twix -e phasecor --remove_os -f raw_wref ../../../example_data/data/meas_MID310_STEAM_metab_FID115673.dat
