@@ -1,0 +1,3 @@
+Namespace(average=True, config=None, conjugate=False, data='raw_suppressed.nii.gz', ecc=None, hlsvd=True, leftshift=None, output='fsl_mrs', overwrite=False, quant=None, reference='raw_wref.nii.gz', report=False, t1=None, verbose=False)
+--------
+Command Line Args:   --data raw_suppressed.nii.gz --reference raw_wref.nii.gz --output fsl_mrs --hlsvd

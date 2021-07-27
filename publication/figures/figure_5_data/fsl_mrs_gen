@@ -1,0 +1,1 @@
+fsl_mrs_preproc --data raw_suppressed.nii.gz --reference raw_wref.nii.gz --output fsl_mrs --hlsvd
