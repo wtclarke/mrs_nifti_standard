@@ -1,9 +1,10 @@
 # Changelog
 
-## WIP (V0.4)
+## 6th August 2020 (V0.4)
 - Changes to the specification:
     - AcqusitionStartTime added to the standard-defined metadata.
 - Updates to online documentation
+- Update readme
 
 ## 6th August 2020 (v0.3)
 - Changes to specification:
