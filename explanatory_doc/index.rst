@@ -10,6 +10,11 @@ Welcome to NIfTI-MRS's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   introduction
+   datastructure
+   metadata
+   spatial_orient
+   software
 
 
 Indices and tables

@@ -1,6 +1,6 @@
 # NIfTI MRS format specification
 
-Version 0.3
+Version 0.4
 
 
 # 1 Purpose
@@ -455,6 +455,13 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
    <td>number</td>
    <td>s</td>
    <td>Mixing time in e.g. STEAM sequence. Units: Seconds</td>
+   <td>N</td>
+  </tr>
+  <tr>
+   <td>AcqusitionStartTime</td>
+   <td>number</td>
+   <td>s</td>
+   <td>Time, relative to EchoTime, that the acquisition starts. Positive values indicate a time after the EchoTime, negative indicate before the EchoTime, a value of zero indicates no offset. Units: Seconds</td>
    <td>N</td>
   </tr>
   <tr>
