@@ -1,0 +1,57 @@
+name: Build specification and publish
+# Upon publication of a GitHub release:
+# 1. Convert the specification.MD to a PDF document
+# 2. Upload it to the Zenodo deposit (https://zenodo.org/record/5084789)
+
+#################################################################################
+# A number of variables must be set for the jobs to work. 
+#
+#   - ZENODO_URL:                    - Zenodo URL to deposit release file to.
+#
+#   - ZENODO_TOKEN:                  - Zenodo access token.
+#
+#   - ZENODO_DEPOSIT_ID:             - Deposit ID of previous Zenodo deposit.
+###############################################################################
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build_pdf:
+    runs-on: ubuntu-latest
+    name: Build PDF
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Requirements
+      run: |
+        sudo apt install fonts-roboto
+        sudo fc-cache -f -v
+        sudo apt-get install texlive-xetex
+        sudo apt-get install pandoc
+    - name: Build
+      run: |
+        ./build_specification/build_specification_pdf
+    - name: Archive artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: pdf_specification
+        path: nifti_mrs_specification_*.pdf
+
+  upload_zenodo:
+    runs-on: ubuntu-latest
+    needs: build_pdf
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Download result for build_pdf
+        uses: actions/download-artifact@v2
+        with:
+          name: pdf_specification
+      - name: Deposit
+        env:
+          ZENODO_URL: ${{ secrets.ZENODO_URL }}
+          ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
+          ZENODO_DEPOSIT_ID: ${{ secrets.ZENODO_DEPOSIT_ID }}
+        run: ./.github/workflows/zenodo_deposit.sh "$ZENODO_URL" "$ZENODO_TOKEN" "$ZENODO_DEPOSIT_ID"

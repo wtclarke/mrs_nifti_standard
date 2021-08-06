@@ -1,7 +1,23 @@
-# Changelog and outstanding issues
-********************************
+# Changelog
 
-## 16th December 2020
+## 6th August 2020 (v0.3)
+- Changes to specification:
+    - Add DIM_ISIS for image-selected in vivo spectroscopy.
+    - Update edited sequence dynamic header examples and formatting.
+    - Added the following specification defined metadata: VOI, WaterSuppressed, WaterSuppressionType, SequenceTriggered, TxCoil, RxCoil, PatientID
+    - Added Processing Provenance section to the standard defined metadata.
+    - Removed SequenceBlock section from the standard defined metadata.
+- Updates prior to circulation of publication
+    - Updates to repository documentation
+    - Figure generation for publication
+    - Updates to example data
+    - Example data placed on Zenodo (https://doi.org/10.5281/zenodo.5085449)
+    - Update to data)conventions notebook.
+- Add explanatory documentation framework
+- Added CI for documentation build
+- Added CI for automatic specification build and Zenodo.
+
+## 16th December 2020 (v0.2)
 - Added specification.
 - Updated examples to be compliant with version 0.2 of the specification.
 - Added minimal examples as submodules.
