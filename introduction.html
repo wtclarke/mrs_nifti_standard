@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>&lt;no title&gt; &mdash; NIfTI-MRS 0.3 documentation</title>
+  <title>Introduction to NIfTI-MRS &mdash; NIfTI-MRS 0.3 documentation</title>
   
 
   
@@ -38,7 +38,9 @@
 
     
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Overview of NIfTI-MRS" href="datastructure.html" />
+    <link rel="prev" title="Welcome to NIfTI-MRS’s documentation!" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -83,10 +85,20 @@
               
             
             
-              <!-- Local TOC -->
-              <div class="local-toc"><ul class="simple">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction to NIfTI-MRS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-problem">The Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-nifti-file-format">The NIfTI file format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#aims-of-nifti-mrs">Aims of NIfTI-MRS</a></li>
 </ul>
-</div>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="datastructure.html">Overview of NIfTI-MRS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metadata.html">What’s in the header extension?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spatial_orient.html">Encoding spatial orientation &amp; position</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software.html">Available software</a></li>
+</ul>
+
             
           
         </div>
@@ -133,7 +145,7 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>&lt;no title&gt;</li>
+      <li>Introduction to NIfTI-MRS</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -152,12 +164,53 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  
+  <div class="section" id="introduction-to-nifti-mrs">
+<h1>Introduction to NIfTI-MRS<a class="headerlink" href="#introduction-to-nifti-mrs" title="Permalink to this headline">¶</a></h1>
+<p>NIfTI-MRS is a standard data format for storing in vivo MRS and MRSI data. NIfTI-MRS aims to solve the problem of multiple proprietary data formats used in MRS. It is based on the NIfTI data format.</p>
+<div class="section" id="the-problem">
+<h2>The Problem<a class="headerlink" href="#the-problem" title="Permalink to this headline">¶</a></h2>
+<p>Users of MRS and magnetic resonance spectroscopic imaging (MRSI) are faced with numerous data formats. Often the format used is dependent on the scanner software version and local scanning practice. These formats vary greatly in the degree in which data is processed, whether data has been spatially reconstructed, what metadata is stored, and in the way the storage is formatted. Often specific expertise is needed to interpret, reconstruct, and analyse MRS data. Users therefore rely on disparate software, with inconsistent implementations.</p>
+<p>Furthermore, there is no accepted format for sharing or storing spectral data. Researchers cannot easily interpret data processed in another laboratory, nor can data be made “open” in a consistent format.</p>
+<p>The lack of a standard MRS data format hinders the use of MRS in several ways:</p>
+<p>1. <strong>It prevents integration with other imaging modalities.</strong>
+Without standardised encoding of spatial orientation and position, registration with other modalities requires a per-data-format solution. This hinders both co-analysis of spectroscopic data with other modalities, and leveraging of other modalities in reconstruction and processing of the typically lower signal MRS.</p>
+<p>2. <strong>It prevents the consistent analysis of data.</strong>
+Any spectroscopic analysis program must implement dedicated interpretation modules for each format. Development of new modules is time consuming and relies on expert knowledge of a format. This results in incomplete coverage of the formats by any one analysis pipeline. Thus consistent (and comparable) analysis is prevented.</p>
+<p>3. <strong>It prevents the creation of new, discrete, specialised tools.</strong>
+Without a standard storage format, processing and analysis of spectroscopic data often occurs in a single monolithic process. This impedes modular processing, which is important for development of new acquisition and analysis methods, as well as improving existing ones. The barrier to creating new tools is high if implementation of all processing steps is required. Furthermore, quantifying improvements from modifying a discrete step is difficult if it is inseparable from other steps.</p>
+<p>4. <strong>It raises the difficulty of sharing data.</strong>
+Users cannot reliably use data received from other users. Data sharing repositories must handle mixed data types. Using different formats results in the shared data being processed to varying levels and having varying metadata. Anonymisation tools required for ethical public sharing of data require per-format implementation.</p>
+<p>Combined, these factors significantly raise the barrier to adoption and use of MRS, especially for non-expert users.</p>
+</div>
+<div class="section" id="the-nifti-file-format">
+<h2>The NIfTI file format<a class="headerlink" href="#the-nifti-file-format" title="Permalink to this headline">¶</a></h2>
+<p>The Neuroimaging Informatics Technology Initiative (NIfTI) file format was originally developed in 2003 to address the needs of MR neuroimaging researchers, and has since become the standard format for storing anatomical, fMRI, diffusion MRI, qMRI and ASL data in this domain. Whilst the NIfTI format was primarily developed for neuroimaging and fMRI, the format is sufficiently flexible to store a wide range of imaging data - including MRS.</p>
+<p>NIfTI has been chosen due to its simplicity, availability of supporting libraries, ubiquity in the neuroimaging community, and extensive pre-existing support. Moreover, the results of spectral fitting can trivially be stored as unmodified NIfTI images. As a result data, results, and associated imaging can all be held and viewed using a single format.</p>
+</div>
+<div class="section" id="aims-of-nifti-mrs">
+<h2>Aims of NIfTI-MRS<a class="headerlink" href="#aims-of-nifti-mrs" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>NIfTI-MRS aims to:</dt><dd><ul class="simple">
+<li><p>provide a simplified pathway from scanner to final analysis,</p></li>
+<li><p>enable interoperability and modularity of analysis programs,</p></li>
+<li><p>enable easier display and co-interpretation with other modalities, and</p></li>
+<li><p>establish a format for data sharing.</p></li>
+</ul>
+</dd>
+</dl>
+<p>In addition, the NIfTI-MRS is designed to provide a simple anonymisation procedure and flexible storage of meta-data by users.</p>
+</div>
+</div>
+
 
            </div>
            
           </div>
           <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="datastructure.html" class="btn btn-neutral float-right" title="Overview of NIfTI-MRS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to NIfTI-MRS’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
   <hr/>
 
