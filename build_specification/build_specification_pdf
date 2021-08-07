@@ -1,4 +1,4 @@
 #!/bin/bash
 version=`git tag`
-echo "${version/./_}"
-pandoc specification.MD -t html -o - | pandoc -f html --pdf-engine=xelatex -V geometry:margin=1in -V mainfont:Roboto -o "nifti_mrs_specification_${version/./_}.pdf"
+echo "${version//./_}"
+pandoc specification.MD -t html -o - | pandoc -f html --pdf-engine=xelatex -V geometry:margin=1in -V mainfont:Roboto -o "nifti_mrs_specification_${version//./_}.pdf"
