@@ -1,7 +1,9 @@
+.. _ISMRMRD: https://ismrmrd.github.io/apidocs/1.5.0/
+
 Introduction to NIfTI-MRS
 =========================
 
-NIfTI-MRS is a standard data format for storing in vivo MRS and MRSI data. NIfTI-MRS aims to solve the problem of multiple proprietary data formats used in MRS. It is based on the NIfTI data format.
+NIfTI-MRS is a standard data format for storing spatially reconstructed in vivo MRS and MRSI data. NIfTI-MRS aims to solve the problem of multiple proprietary data formats used in MRS. It is based on the NIfTI data format.
 
 The Problem
 -----------
@@ -43,3 +45,10 @@ NIfTI-MRS aims to:
     - establish a format for data sharing.
 
 In addition, the NIfTI-MRS is designed to provide a simple anonymisation procedure and flexible storage of meta-data by users.
+
+What NIfTI-MRS doesn't cover
+----------------------------
+
+NIfTI-MRS is not designed to store data that has not been spatially reconstructed. I.e. MRSI data before reconstruction from the k-space representation. The ISMRMRD_ data format is an open-source community driven format suitable for this purpose.
+
+For the avoidance of doubt single-voxel spectroscopy (SVS) is considered spatially reconstructed, and may be stored in NIfTI-MRS.
