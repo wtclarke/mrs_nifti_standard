@@ -15,11 +15,3 @@ Welcome to the NIfTI-MRS documentation!
    metadata
    spatial_orient
    software
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
