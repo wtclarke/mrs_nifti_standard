@@ -25,7 +25,7 @@ Each file is names example_{n}.nii.gz according to this list.
 
 ## Example data generation
 ### Source data
-Data required for example data generation can be downloaded from the associated Zenodo repository. This data can be downloaded using the shell script ```to do```.
+Data required for example data generation can be downloaded from the associated [Zenodo repository](https://doi.org/10.5281/zenodo.5654857). This data can be downloaded using the shell script ```download.sh```.
 
 ### Code
 Scripts and interactive python notebooks for data generation can be found in the example_data/data_generation directory of this repository.
