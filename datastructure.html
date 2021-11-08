@@ -1,71 +1,32 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Overview of NIfTI-MRS &mdash; NIfTI-MRS 0.3 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>Overview of NIfTI-MRS &mdash; NIfTI-MRS 0.3 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="What’s in the header extension?" href="metadata.html" />
     <link rel="prev" title="Introduction to NIfTI-MRS" href="introduction.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> NIfTI-MRS
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -73,148 +34,123 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to NIfTI-MRS</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Overview of NIfTI-MRS</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#file-structure">File structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#file-structure">File structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nifti-header">NIfTI Header</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nifti-data-block">NIfTI Data Block</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dimensions-1-4-required">Dimensions 1-4 (required)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dimensions-5-7-optional">Dimensions 5-7 (optional)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#nifti-header-extension">NIfTI Header Extension</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="metadata.html">What’s in the header extension?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="spatial_orient.html">Encoding spatial orientation &amp; position</a></li>
-<li class="toctree-l1"><a class="reference internal" href="software.html">Available software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software.html">NIfTI-MRS Software</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">NIfTI-MRS</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Overview of NIfTI-MRS</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/datastructure.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <div class="section" id="overview-of-nifti-mrs">
 <h1>Overview of NIfTI-MRS<a class="headerlink" href="#overview-of-nifti-mrs" title="Permalink to this headline">¶</a></h1>
+<p>This page provides an overview of the NIfTI-MRS file structure.</p>
+<p>The structure of NIfTI-MRS is defined in the standard, which is available online (<a class="reference external" href="https://doi.org/10.5281/zenodo.5084788">Zenodo</a>, <a class="reference external" href="https://github.com/wexeee/mrs_nifti_standard/blob/master/specification.MD">GitHub</a>).</p>
+<p>NIfTI-MRS is derived from the NIfTI standard, preferring (but not requiring) the NIfTI-2 standard. The NIfTI standard is available online (<a class="reference external" href="https://nifti.nimh.nih.gov/">NIfTI</a>, <a class="reference external" href="https://nifti.nimh.nih.gov/pub/dist/src/niftilib/nifti1.h">NIfTI-1</a>, <a class="reference external" href="https://nifti.nimh.nih.gov/pub/dist/doc/nifti2.h">NIfTI-2</a>).</p>
 <div class="section" id="file-structure">
 <h2>File structure<a class="headerlink" href="#file-structure" title="Permalink to this headline">¶</a></h2>
+<p>The NIfTI format contains three sections: the data header, optional header extensions, and the data block.</p>
+<a class="reference internal image-reference" href="_images/nmrs_structure_overview.png"><img alt="The NIfTI-MRS structure" class="align-center" src="_images/nmrs_structure_overview.png" style="width: 478.0px; height: 532.5px;" /></a>
+<div class="section" id="nifti-header">
+<h3>NIfTI Header<a class="headerlink" href="#nifti-header" title="Permalink to this headline">¶</a></h3>
+<p>NIfTI-MRS reuses the NIfTI data header structure, it is identical to the header structure of the parent standard. Some header fields are constrained or re-utilised for spectroscopy-specific purposes:</p>
+<ol class="arabic simple">
+<li><p>The dwell-time of the time domain data is stored in <code class="docutils literal notranslate"><span class="pre">pixdim[4]</span></code> (with units are specified in the <code class="docutils literal notranslate"><span class="pre">xyzt_units</span></code> field).</p></li>
+<li><p>Spatial position encoding is identical to the original NIfTI-1 specification, but default values are defined. See the <a class="reference internal" href="spatial_orient.html#spatial-orient"><span class="std std-ref">Encoding spatial orientation &amp; position</span></a> page.</p></li>
+<li><p>Only complex datatypes may be specified in the <code class="docutils literal notranslate"><span class="pre">datatype</span></code> field (e.g. “DT_COMPLEX”, 32).</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">intent_name</span></code> filed is used for the NIfTI-MRS version, It is specified using the format <em>mrs_vMajor_minor</em>.</p></li>
+</ol>
+</div>
+<div class="section" id="nifti-data-block">
+<h3>NIfTI Data Block<a class="headerlink" href="#nifti-data-block" title="Permalink to this headline">¶</a></h3>
+<p>The NIfTI-MRS data block is used to store up to seven-dimensional complex time-domain data.</p>
+<div class="section" id="dimensions-1-4-required">
+<h4>Dimensions 1-4 (required)<a class="headerlink" href="#dimensions-1-4-required" title="Permalink to this headline">¶</a></h4>
+<p>The first four dimensions are required for a valid NIfTI-MRS file.</p>
+<ul class="simple">
+<li><p>Dimensions 1-3 are used for spatial encoding (x, y, and z coordinates). All three spatial dimensions have a size of one for single-voxel data.</p></li>
+<li><p>Dimension 4 is used to store the time-domain FID (or echo).</p></li>
+</ul>
+</div>
+<div class="section" id="dimensions-5-7-optional">
+<h4>Dimensions 5-7 (optional)<a class="headerlink" href="#dimensions-5-7-optional" title="Permalink to this headline">¶</a></h4>
+<p>Dimension 5-7 are optional. They flexibly encode different dynamic aspects, with the specific purpose and interpretation of each dimension being documented in the header extension.</p>
+</div>
+</div>
+<div class="section" id="nifti-header-extension">
+<h3>NIfTI Header Extension<a class="headerlink" href="#nifti-header-extension" title="Permalink to this headline">¶</a></h3>
+<p>The header extension has the official NIfTI identification code <strong>44</strong>, <em>NIFTI_ECODE_MRS</em>. It comprises key-value pairs formatted according to the <a class="reference external" href="https://www.json.org/json-en.html">JSON</a> standard. The header extension contains the minimum necessary metadata required for meaningful interpretation of the spectroscopic data, additional information about optional higher data dimensions, and further optional MRS-specific metadata. For more information on the header extensions structure see the page on <span class="xref std std-ref">the header extension</span>.</p>
+</div>
 </div>
 </div>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="metadata.html" class="btn btn-neutral float-right" title="What’s in the header extension?" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction to NIfTI-MRS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="metadata.html" class="btn btn-neutral float-right" title="What’s in the header extension?" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, William Clarke.
-
-    </p>
+    <p>&#169; Copyright 2021, William Clarke.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

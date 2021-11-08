@@ -1,71 +1,32 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>What’s in the header extension? &mdash; NIfTI-MRS 0.3 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>What’s in the header extension? &mdash; NIfTI-MRS 0.3 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Encoding spatial orientation &amp; position" href="spatial_orient.html" />
     <link rel="prev" title="Overview of NIfTI-MRS" href="datastructure.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> NIfTI-MRS
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -73,168 +34,202 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to NIfTI-MRS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="datastructure.html">Overview of NIfTI-MRS</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">What’s in the header extension?</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#required-metadata">Required metadata</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#dimension-metadata">Dimension metadata</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#standard-defined-metadata">Standard defined metadata</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#user-defined-metadata">User defined metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#required-metadata">1. Required metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#standard-defined-metadata">2. Standard defined metadata</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#anonymisation-tags">Anonymisation tags</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#user-defined-metadata">3. User defined metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#higher-dimension-metadata">4. Higher dimension metadata</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#defined-dimension-tags">Defined Dimension Tags</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-the-dim-n-header-key">Using the dim_{n}_header key</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#example-header-extensions">Example header extensions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="spatial_orient.html">Encoding spatial orientation &amp; position</a></li>
-<li class="toctree-l1"><a class="reference internal" href="software.html">Available software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software.html">NIfTI-MRS Software</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">NIfTI-MRS</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>What’s in the header extension?</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/metadata.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <div class="section" id="what-s-in-the-header-extension">
 <h1>What’s in the header extension?<a class="headerlink" href="#what-s-in-the-header-extension" title="Permalink to this headline">¶</a></h1>
+<p>The header extension contains four types of metadata key:</p>
+<ol class="arabic simple">
+<li><p>The two mandatory keys <code class="docutils literal notranslate"><span class="pre">SpectrometerFrequency</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">ResonantNucleus</span></code>. These must be present in all NIfTI-MRS formatted files, because they are a necessary requirement for correct reconstruction and interpretation of the time-domain data.</p></li>
+<li><p>Standard-defined metadata. These keys correspond to well-defined and frequently used sequence, hardware, or subject data. They are defined in the NIfTI-MRS standard and may not be redefined. These keys are optional.</p></li>
+<li><p>User-defined metadata. Keys can be arbitrarily defined by users to store unusual metadata, that not foreseen in the standard, or that for which no fixed format or recommendations exist. User-defined <a class="reference external" href="https://www.json.org/json-en.html">JSON</a> metadata permits additional fields for user-defined keys, encouraging in-place documentation to aid interpretation of the keys. These keys are entirely optional.</p></li>
+<li><p>Higher dimension information. Three keys are defined per additional encoding dimension (n=5,6,7): <code class="docutils literal notranslate"><span class="pre">dim_{n}</span></code>, <code class="docutils literal notranslate"><span class="pre">dim_{n}_info</span></code>, and <code class="docutils literal notranslate"><span class="pre">dim_{n}_header</span></code>.</p></li>
+</ol>
 <div class="section" id="required-metadata">
-<h2>Required metadata<a class="headerlink" href="#required-metadata" title="Permalink to this headline">¶</a></h2>
+<h2>1. Required metadata<a class="headerlink" href="#required-metadata" title="Permalink to this headline">¶</a></h2>
 <p>Two pieces of information are required to make a legal NIfTI-MRS file:</p>
 <ol class="arabic simple">
 <li><p>The spectrometer frequency - stored in MHz</p></li>
-<li><p>The resonant nucleus - stored as a code (1H, 31P etc.)</p></li>
+<li><p>The resonant nucleus - stored as a coded string (1H, 31P etc.)</p></li>
 </ol>
-<p>Both appear as JSON arrays as MRS experiments can have more than one associated nuclei.</p>
-<p>One other piece of the puzzle is needed, the dwell time. However this is stored in the element of the  NIfTI file header field <code class="code docutils literal notranslate"><span class="pre">pixdim</span></code> corresponding to the time domain dimension. This is the 5th element <code class="code docutils literal notranslate"><span class="pre">pixdim[4]</span></code> as the 1st is used for an alternative use.</p>
-</div>
-<div class="section" id="dimension-metadata">
-<h2>Dimension metadata<a class="headerlink" href="#dimension-metadata" title="Permalink to this headline">¶</a></h2>
-<p>This metadata is required to identify the purpose of one of the higher encoding dimensions (the 5th-7th dimensions). More information can be found on the page on…</p>
+<p>The string encoding the nucleus is the mass number followed by the element symbol.</p>
+<p>Both are defined as JSON arrays (of numbers and strings respectively) as MRS experiments can have more than one associated nucleus.</p>
+<p>One other piece of the puzzle is needed, the dwell time. However this is stored in the element of the  NIfTI file header field <code class="code docutils literal notranslate"><span class="pre">pixdim</span></code> corresponding to the time domain dimension. This is the 5th element <code class="code docutils literal notranslate"><span class="pre">pixdim[4]</span></code> as the 1st element is used for an alternative use.</p>
 </div>
 <div class="section" id="standard-defined-metadata">
-<h2>Standard defined metadata<a class="headerlink" href="#standard-defined-metadata" title="Permalink to this headline">¶</a></h2>
+<h2>2. Standard defined metadata<a class="headerlink" href="#standard-defined-metadata" title="Permalink to this headline">¶</a></h2>
+<p>In addition to the required metadata, data might be needed for more meaningful interpretation of the stored data. For example storing information on basis simulation; relaxation correction; subject, sequence and scanner information; or editing pulse information.</p>
+<p>The NIfTI-MRS standard defines a set of optional metadata key-value pairs which encode common acquisition and sequence parameters. In the specification  the names, data types and descriptions of the keys is explicitly defined. The list of standard defined metadata is available in the <span class="xref std std-ref">Standard, section 5</span>.</p>
+<p><strong>Users may define their own keys (see next section) in addition to those specified here, but must not change the meaning of existing keys specified in the standard.</strong></p>
+<div class="section" id="anonymisation-tags">
+<h3>Anonymisation tags<a class="headerlink" href="#anonymisation-tags" title="Permalink to this headline">¶</a></h3>
+<p>Standard-defined metadata keys are given a standard anonymisation flag which marks the key for deletion or retention upon anonymisation. This information is given in the <span class="xref std std-ref">Standard, section 5</span>.</p>
+</div>
 </div>
 <div class="section" id="user-defined-metadata">
-<h2>User defined metadata<a class="headerlink" href="#user-defined-metadata" title="Permalink to this headline">¶</a></h2>
+<h2>3. User defined metadata<a class="headerlink" href="#user-defined-metadata" title="Permalink to this headline">¶</a></h2>
+<p>To supplement the standard defined metadata and provide complete freedom for users to flexibly use NIfTI-MRS, metadata keys may be arbitrarily defined (excluding reserved keys).</p>
+<p>The standard encourages users to create user defined keys as a nested JSON object, containing value keys, and in-place description keys. For example</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span>{
+    “Excitation pulse duration”:
+        { “Value” : 3.0,
+          “Description” : “Duration of the excitation pulse.”}
+}
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span>{
+    “Excitation pulse information”:
+        { “Duration”: 3.0,
+          “Pulse name”: ”SINC”,
+          “Description” : “Excitation pulse information. Duration in ms.”}
+}
+</pre></div>
+</div>
+<p>Keys appended with <code class="docutils literal notranslate"><span class="pre">private_</span></code> at any level are marked for anonymisation.</p>
+</div>
+<div class="section" id="higher-dimension-metadata">
+<h2>4. Higher dimension metadata<a class="headerlink" href="#higher-dimension-metadata" title="Permalink to this headline">¶</a></h2>
+<p>This metadata is required to identify the purpose of the higher encoding dimensions (the 5th-7th dimensions).</p>
+<p>One key per dimension is required: <code class="docutils literal notranslate"><span class="pre">dim_{n}</span></code>. This key uses a list of predefined tags to make the dimensions encoding use. These tags are listed below.</p>
+<p>The optional key <code class="docutils literal notranslate"><span class="pre">dim_{n}_info</span></code> provides a human readable description of the dimensions purpose.</p>
+<p><code class="docutils literal notranslate"><span class="pre">dim_{n}_header</span></code> allows the user to define metadata that changes with the index along the dimension. This key is optional, and its use is described in more detail below.</p>
+<div class="section" id="defined-dimension-tags">
+<h3>Defined Dimension Tags<a class="headerlink" href="#defined-dimension-tags" title="Permalink to this headline">¶</a></h3>
+<p>The following tags are defined for dimension identification.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Value</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>DIM_COIL</p></td>
+<td><p>For storage of data from each individual receiver coil element.</p></td>
+</tr>
+<tr class="row-odd"><td><p>DIM_DYN</p></td>
+<td><p>For storage of each individual acquisition transient. E.g. for post-acquisition B0 drift correction.</p></td>
+</tr>
+<tr class="row-even"><td><p>DIM_INDIRECT_{N}</p></td>
+<td><p>The indirect detection dimension - necessary for 2D (and greater) MRS acquisitions.</p></td>
+</tr>
+<tr class="row-odd"><td><p>DIM_PHASE_CYCLE</p></td>
+<td><p>Used for the time-proportional phase incrementation method.</p></td>
+</tr>
+<tr class="row-even"><td><p>DIM_EDIT</p></td>
+<td><p>Used for edited MRS techniques such as MEGA or HERMES.</p></td>
+</tr>
+<tr class="row-odd"><td><p>DIM_MEAS</p></td>
+<td><p>Used to indicate multiple repeats of the full sequence contained within the same original data file.</p></td>
+</tr>
+<tr class="row-even"><td><p>DIM_USER_{N}</p></td>
+<td><p>User defined dimension.</p></td>
+</tr>
+<tr class="row-odd"><td><p>DIM_ISIS</p></td>
+<td><p>Dimension for storing image-selected in vivo spectroscopy (ISIS) acquisitions.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="using-the-dim-n-header-key">
+<h3>Using the dim_{n}_header key<a class="headerlink" href="#using-the-dim-n-header-key" title="Permalink to this headline">¶</a></h3>
+<p>The optional 5th, 6th and 7th data dimensions can store data acquired under dynamically changing acquisition conditions, e.g. with spectral editing or non-uniformly varying parameters. For example, the 5th dimension could be tagged DIM_INDIRECT_{N} or DIM_USER{N}, specifying a description in dim_5_info, and associating one or more metadata keys by specifying dim_5_header.</p>
+<p>The values of the associated metadata for each dimension index can then be specified in two ways.</p>
+<p>For standard-defined metadata, the value at each dimension index can be described:</p>
+<ul class="simple">
+<li><p>fully, by using a JSON array of length equal to the size of the dimension,</p></li>
+<li><p>in abbreviated form, using a JSON object with fields “start” and “increment”.</p></li>
+</ul>
+<p>The units and form of each element should match the metadata key specification in <span class="xref std std-ref">Standard, section 5</span>.</p>
+<p>For user-specified metadata the format described in the previous section should be followed, using a JSON object, including a “Description” field with the iterable array or short format contained in “Value”.</p>
+</div>
+</div>
+<div class="section" id="example-header-extensions">
+<h2>Example header extensions<a class="headerlink" href="#example-header-extensions" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="_images/nmrs_extension_examples.png"><img alt="Example NIfTI-MRS header extensions" class="align-center" src="_images/nmrs_extension_examples.png" style="width: 645.75px; height: 855.75px;" /></a>
+<p>Extracts of NIfTI-MRS JSON-formatted header extensions for four different pieces of example data. The full example data is available from <a class="reference external" href="https://doi.org/10.5281/zenodo.5085448">Zenodo</a>. Each example demonstrates a different aspect of the header extension format. Figure annotations are shown as blue italicised text. A: Structure of a header extension of 1H single-voxel data before pre-processing. B: Header extension for processed 31P MRSI, including fields that are marked for anonymisation (red). C: Example of dynamic header fields indicating an editing condition stored in the 7th dimension. D: Extract of the processing provenance in a MEGA-PRESS sequence pre-processed using FSL-MRS.</p>
 </div>
 </div>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="spatial_orient.html" class="btn btn-neutral float-right" title="Encoding spatial orientation &amp; position" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="datastructure.html" class="btn btn-neutral float-left" title="Overview of NIfTI-MRS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="spatial_orient.html" class="btn btn-neutral float-right" title="Encoding spatial orientation &amp; position" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, William Clarke.
-
-    </p>
+    <p>&#169; Copyright 2021, William Clarke.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
