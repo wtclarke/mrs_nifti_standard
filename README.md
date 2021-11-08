@@ -1,4 +1,4 @@
-# mrs_nifti_standard
+# The NIfTI-MRS data standard repository
 
 This is a repository to store information and code associated with the efforts to define an in vivo magnetic resonance spectroscopy (MRS) NIfTI data format.
 

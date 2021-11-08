@@ -1,12 +1,17 @@
 # Changelog
 
-## 6th August 2020 (V0.4)
+## 8th November 2021 (V0.4)
+- Updates to online documentation
+- Example data generation data available online at Zenodo.
+- Update readme
+
+## 6th August 2021 (V0.4)
 - Changes to the specification:
     - AcqusitionStartTime added to the standard-defined metadata.
 - Updates to online documentation
 - Update readme
 
-## 6th August 2020 (v0.3)
+## 6th August 2021 (v0.3)
 - Changes to specification:
     - Add DIM_ISIS for image-selected in vivo spectroscopy.
     - Update edited sequence dynamic header examples and formatting.
