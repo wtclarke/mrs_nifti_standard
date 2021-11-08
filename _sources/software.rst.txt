@@ -5,13 +5,13 @@ This page provides a list of software compatible with NIfTI-MRS.
 
 Conversion
 ----------
-Conversion to NIfTI-MRS from other data formats is primarily provided by spec2nii (`Github<https://github.com/wexeee/spec2nii>`_).
+Conversion to NIfTI-MRS from other data formats is primarily provided by spec2nii (`Github <https://github.com/wexeee/spec2nii>`_).
 
-To convert images acquired with MRS data we recommend dcm2niix (`Github<https://github.com/rordenlab/dcm2niix>`_).
+To convert images acquired with MRS data we recommend dcm2niix (`Github <https://github.com/rordenlab/dcm2niix>`_).
 
 I/O libraries
 -------------
-A number of NIfTI libraries are available and suitable for working with NIfTI-MRS. Many of these are utilised for the `minimal code examples<https://github.com/wexeee/mrs_nifti_standard/tree/master/minimal_examples>`_ contained in the NIfTI-MRS repository.
+A number of NIfTI libraries are available and suitable for working with NIfTI-MRS. Many of these are utilised for the `minimal code examples <https://github.com/wexeee/mrs_nifti_standard/tree/master/minimal_examples>`_ contained in the NIfTI-MRS repository.
 
 .. list-table::
    :widths: 25 25 50
@@ -36,7 +36,7 @@ A number of NIfTI libraries are available and suitable for working with NIfTI-MR
 
 Visualisation
 -------------
-A NIfTI-MRS visualiser is available using `FSLeyes<https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FSLeyes>`_ combined with the dedicated `FSLeyes MRS plugin<https://git.fmrib.ox.ac.uk/wclarke/fsleyes-plugin-mrs>`_.
+A NIfTI-MRS visualiser is available using `FSLeyes <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FSLeyes>`_ combined with the dedicated `FSLeyes MRS plugin <https://git.fmrib.ox.ac.uk/wclarke/fsleyes-plugin-mrs>`_.
 
 MRS analysis
 ------------
