@@ -1,6 +1,6 @@
 .. _meta_data:
 .. _JSON: https://www.json.org/json-en.html
-.. _appendixB: https://github.com/wexeee/mrs_nifti_standard/blob/master/specification.MD#5-appendix-b-specified-json-metadata-tags
+.. _appendixB: https://github.com/wtclarke/mrs_nifti_standard/blob/master/specification.MD#5-appendix-b-specified-json-metadata-tags
 .. _Zenodo: https://doi.org/10.5281/zenodo.5085448
 
 What's in the header extension?
