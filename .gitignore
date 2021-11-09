@@ -4,4 +4,5 @@ example_data/data
 nifti_mrs_specification*.pdf
 explanatory_doc/_build
 .vscode/
+~$*.docx
 

@@ -11,7 +11,7 @@ Users of MRS and magnetic resonance spectroscopic imaging (MRSI) are faced with 
 NIfTI has been chosen due to its simplicity, availability of supporting libraries, ubiquity in the neuroimaging community, and extensive pre-existing support. Moreover, the results of spectral fitting can trivially be stored as unmodified NIfTI images. As a result data, results, and associated imaging can all be held and viewed using a single format.
 
 ## NIfTI-MRS
-The provisional format specification can be found in this repository as a markdown file (specification.md) and at [zenodo](https://doi.org/10.5281/zenodo.5084789)
+The provisional format specification can be found in this repository as a markdown file (specification.md) and at [Zenodo](https://doi.org/10.5281/zenodo.5084788)
 
 A discussion on the format is ongoing at the [MRSHub forums](https://forum.mrshub.org/t/nifti-mrs-discussion-thread/443). Note that this thread has been split off from a longer one on the proposed [MRS BIDS format](https://forum.mrshub.org/t/bids-for-spectroscopy/83/42). We are also holding regular meetings, get in contact via the MRSHub discussion or email if you would like to get involved.
 
