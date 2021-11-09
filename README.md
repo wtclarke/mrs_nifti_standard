@@ -83,8 +83,8 @@ We recommend using conda to download the packages, and using python >=3.7.
     -c conda-forge \
     -c defaults\
     -c https://fsl.fmrib.ox.ac.uk/fsldownloads/fslconda/channel/ \
-    jupyterlab pymapvbvd nibabel numpy h5py spec2nii fsl-mrs```
+    jupyterlab pymapvbvd nibabel numpy h5py spec2nii fsl-mrs
+```
 
-
-
-
+## Licence
+The content of this project itself is licensed under the [Creative Commons Attribution 4.0 International (CC BY 4.0) Licence](https://creativecommons.org/licenses/by/4.0/), any code within this repository is licensed under the BSD 3-Clause Licence. 
