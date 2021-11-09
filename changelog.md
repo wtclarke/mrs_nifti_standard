@@ -1,5 +1,9 @@
 # Changelog
 
+## 9th November 2021 (V0.5)
+- Updates to data type specification.
+- Added licensing information to project.
+
 ## 8th November 2021 (V0.4)
 - Updates to online documentation
 - Example data generation data available online at Zenodo.

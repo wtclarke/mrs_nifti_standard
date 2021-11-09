@@ -1,6 +1,6 @@
 # NIfTI MRS format specification
 
-Version 0.4
+Version 0.5
 
 
 # 1 Purpose
@@ -265,7 +265,7 @@ At either the top level or within the json object the key prefix “private_” 
   </tr>
   <tr>
    <td>Description</td>
-   <td>String</td>
+   <td>string</td>
    <td>Freeform description of the user defined key.</td>
   </tr>
 </table>
@@ -480,16 +480,16 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
   </tr>
   <tr>
    <td>VOI</td>
-   <td>[number]</td>
+   <td>Array of numbers</td>
    <td>-</td>
    <td>VoI localisation volume for MRSI sequences. Stored as a 4 x 4 affine using identical conventions to the xform NIfTI affine matrix. Not defined for data stored with a single spatial voxel.</td>
    <td>N</td>
   </tr>
   <tr>
    <td>WaterSuppressed</td>
-   <td>bool</td>
+   <td>boolean</td>
    <td>-</td>
-   <td>Boolian value indicating whether data was collected with (True) or without (False) water suppression.</td>
+   <td>Boolean value indicating whether data was collected with (True) or without (False) water suppression.</td>
    <td>N</td>
   </tr>
   <tr>
@@ -501,9 +501,9 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
   </tr>
   <tr>
    <td>SequenceTriggered</td>
-   <td>bool</td>
+   <td>boolean</td>
    <td>-</td>
-   <td>Boolian value indicating whether the sequence is triggered. If triggered the repetition time might not be constant.</td>
+   <td>Boolean value indicating whether the sequence is triggered. If triggered the repetition time might not be constant.</td>
    <td>N</td>
   </tr>
 </table>
@@ -528,49 +528,49 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
   </tr>
   <tr>
    <td>Manufacturer</td>
-   <td>String</td>
+   <td>string</td>
    <td>Manufacturer of the device. DICOM (0008,0070).</td>
    <td>N</td>
   </tr>
   <tr>
    <td>ManufacturersModelName</td>
-   <td>String</td>
+   <td>string</td>
    <td>Manufacturer's model name of the device. DICOM (0008,1090).</td>
    <td>N</td>
   </tr>
   <tr>
    <td>DeviceSerialNumber</td>
-   <td>String</td>
+   <td>string</td>
    <td>Manufacturer's serial number of the device. DICOM (0018,1000).</td>
    <td>Y</td>
   </tr>
   <tr>
    <td>SoftwareVersions</td>
-   <td>String</td>
+   <td>string</td>
    <td>Manufacturer's designation of the software version. DICOM (0018,1020)</td>
    <td>N</td>
   </tr>
   <tr>
    <td>InstitutionName</td>
-   <td>String</td>
+   <td>string</td>
    <td>Institution’s Name. DICOM (0008,0080).</td>
    <td>Y</td>
   </tr>
   <tr>
    <td>InstitutionAddress</td>
-   <td>String</td>
+   <td>string</td>
    <td>Institution’s address. DICOM (0008,0081).</td>
    <td>Y</td>
   </tr>
   <tr>
    <td>TxCoil</td>
-   <td>String</td>
+   <td>string</td>
    <td>Name of transmit RF coil.</td>
    <td>N</td>
   </tr>
   <tr>
    <td>RxCoil</td>
-   <td>String</td>
+   <td>string</td>
    <td>Name of receive RF coil</td>
    <td>N</td>
   </tr>
@@ -593,13 +593,13 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
   </tr>
   <tr>
    <td>SequenceName</td>
-   <td>String</td>
+   <td>string</td>
    <td>User defined name. DICOM (0018,0024).</td>
    <td>N</td>
   </tr>
   <tr>
    <td>ProtocolName</td>
-   <td>String</td>
+   <td>string</td>
    <td>User-defined description of the conditions under which the Series was performed. DICOM (0018,1030).</td>
    <td>N</td>
   </tr>
@@ -625,37 +625,37 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
   </tr>
   <tr>
    <td>PatientPosition</td>
-   <td>String</td>
+   <td>string</td>
    <td>Patient position descriptor relative to the equipment. DICOM (0018,5100). Must be one of the DICOM defined code strings e.g. HFS, HFP.</td>
    <td>N</td>
   </tr>
   <tr>
    <td>PatientName</td>
-   <td>String</td>
+   <td>string</td>
    <td>Patient's full name. DICOM (0010,0010).</td>
    <td>Y</td>
   </tr>
   <tr>
    <td>PatientID</td>
-   <td>String</td>
+   <td>string</td>
    <td>Patient's ID. DICOM (0010,0020).</td>
    <td>Y</td>
   </tr>
   <tr>
    <td>PatientWeight</td>
-   <td>Number</td>
+   <td>number</td>
    <td>Weight of the Patient in kilograms. DICOM (0010,1030).</td>
    <td>N</td>
   </tr>
   <tr>
    <td>PatientDoB</td>
-   <td>String</td>
+   <td>string</td>
    <td>Date of birth of the named Patient. YYYYMMDD. DICOM (0010,0030).</td>
    <td>Y</td>
   </tr>
   <tr>
    <td>PatientSex</td>
-   <td>String</td>
+   <td>string</td>
    <td>Sex of the named Patient. ‘M’, ‘F’, ‘O’. DICOM (0010,0040)</td>
    <td>N</td>
   </tr>
@@ -681,19 +681,19 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
   </tr>
   <tr>
    <td>ConversionMethod</td>
-   <td>String</td>
+   <td>string</td>
    <td>Program used for conversion. May include additional information like software version.</td>
    <td>N</td>
   </tr>
   <tr>
    <td>ConversionTime</td>
-   <td>String:  “YYYY-MM-DDThh:mm:ss.sss”</td>
-   <td>Time and date of conversion. <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> compliant format</td>
+   <td>string</td>
+   <td>Time and date of conversion. <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> compliant format. I.e. “YYYY-MM-DDThh:mm:ss.sss”</td>
    <td>N</td>
   </tr>
   <tr>
    <td>OriginalFile</td>
-   <td>Array of Strings</td>
+   <td>Array of strings</td>
    <td>Name and extension of the original file(s)</td>
    <td>Y</td>
   </tr>
@@ -791,7 +791,7 @@ Each condition is listed as an element in an array of JSON objects under the key
   </tr>
   <tr>
    <td>Nucleus</td>
-   <td>String</td>
+   <td>string</td>
    <td>Nucleus</td>
   </tr>
 </table>
@@ -850,38 +850,38 @@ An array for storing a record of processing steps applied to the data. Each elem
   </tr>
   <tr>
    <td>Time</td>
-   <td>String:  “YYYY-MM-DDThh:mm:ss.sss”</td>
-   <td>Time and date of processing step. <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> compliant format</td>
+   <td>string</td>
+   <td>Time and date of processing step. <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> compliant format. I.e. “YYYY-MM-DDThh:mm:ss.sss”.</td>
   </tr>
   <tr>
    <td>Program</td>
-   <td>String</td>
+   <td>string</td>
    <td>Processing program used</td>
   </tr>
   <tr>
    <td>Version</td>
-   <td>String</td>
+   <td>string</td>
    <td>Version of program used</td>
   </tr>
   <tr>
    <td>Method</td>
-   <td>String</td>
+   <td>string</td>
    <td>Description of processing step applied. See list in this section for fixed definitions.</td>
   </tr>
   <tr>
    <td>Details</td>
-   <td>String</td>
+   <td>string</td>
    <td>Optional program specific details.</td>
   </tr>
   <tr>
    <td>Link</td>
-   <td></td>
+   <td>string</td>
    <td>File path (either/or)</td>
   </tr>
 </table>
 
 
-The ‘Method’ field can take arbitrary string values but where possible users should adhere to the keywords given in tables 2,3 and 4 of _Near et al _(NMR in Biomedicine n/a:e4257 doi:[ 10.1002/nbm.4257](https://doi.org/10.1002/nbm.4257))_. _ These keywords are reproduced below.
+The ‘Method’ field can take arbitrary string values but where possible users should adhere to the keywords given in tables 2,3 and 4 of Near _et al_ (NMR in Biomedicine e4257 doi:[10.1002/nbm.4257](https://doi.org/10.1002/nbm.4257)). These keywords are reproduced below.
 
 
 <table>
@@ -907,7 +907,9 @@ The ‘Method’ field can take arbitrary string values but where possible users
   </tr>
 </table>
 
+## Licence
 
+This specification is released under the Creative Commons Attribution 4.0 International (CC BY 4.0) Licence.
 
 <!-- Footnotes themselves at the bottom. -->
 ## Notes
