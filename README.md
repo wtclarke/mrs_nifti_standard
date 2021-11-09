@@ -2,7 +2,7 @@
 
 This is a repository to store information and code associated with the efforts to define an in vivo magnetic resonance spectroscopy (MRS) NIfTI data format.
 
-[Documentation for the format is available online.](https://wexeee.github.io/mrs_nifti_standard/)
+[Documentation for the format is available online.](https://wtclarke.github.io/mrs_nifti_standard/)
 
 ## Why?
 Users of MRS and magnetic resonance spectroscopic imaging (MRSI) are faced with numerous data formats. Often vendor-specific expertise is needed to interpret, reconstruct, and analyse MRS data. Other users rely on disparate software, with inconsistent implementations. Furthermore, there is no accepted format for sharing or storing spectral data. Researchers cannot easily interpret data processed in another laboratory, nor can data be made “open” in a consistent format.
@@ -16,10 +16,10 @@ The provisional format specification can be found in this repository as a markdo
 A discussion on the format is ongoing at the [MRSHub forums](https://forum.mrshub.org/t/nifti-mrs-discussion-thread/443). Note that this thread has been split off from a longer one on the proposed [MRS BIDS format](https://forum.mrshub.org/t/bids-for-spectroscopy/83/42). We are also holding regular meetings, get in contact via the MRSHub discussion or email if you would like to get involved.
 
 ## Conversion of data to NIfTI-MRS
-Conversion of data can be carried out manually, but a separate project, [spec2nii](https://github.com/wexeee/spec2nii/tree/master/spec2nii), can be used for automatic conversion of data to the format.
+Conversion of data can be carried out manually, but a separate project, [spec2nii](https://github.com/wtclarke/spec2nii/tree/master/spec2nii), can be used for automatic conversion of data to the format.
 
 ### spec2nii supported formats
-To see an up-to-date list of formats supported by spec2nii, see the [spec2nii README](https://github.com/wexeee/spec2nii/blob/master/README.md).
+To see an up-to-date list of formats supported by spec2nii, see the [spec2nii README](https://github.com/wtclarke/spec2nii/blob/master/README.md).
 
 The following table also summaries those formats supported.
 
