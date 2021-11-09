@@ -1,5 +1,5 @@
 .. _Zenodo: https://doi.org/10.5281/zenodo.5084788
-.. _GitHub: https://github.com/wexeee/mrs_nifti_standard/blob/master/specification.MD
+.. _GitHub: https://github.com/wtclarke/mrs_nifti_standard/blob/master/specification.MD
 .. _NIfTI: https://nifti.nimh.nih.gov/
 .. _NIfTI-1: https://nifti.nimh.nih.gov/pub/dist/src/niftilib/nifti1.h
 .. _NIfTI-2: https://nifti.nimh.nih.gov/pub/dist/doc/nifti2.h

@@ -20,7 +20,7 @@ jobs:
     # ===============================
     - name: Commit documentation changes
       run: |
-        git clone https://github.com/wexeee/mrs_nifti_standard.git --branch gh-pages --single-branch gh-pages
+        git clone https://github.com/wtclarke/mrs_nifti_standard.git --branch gh-pages --single-branch gh-pages
         cp -r explanatory_doc/_build/html/* gh-pages/
         cd gh-pages
         touch .nojekyll

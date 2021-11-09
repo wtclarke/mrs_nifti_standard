@@ -9,4 +9,4 @@
 	url = https://github.com/amirshamaei/NIfTI-MRS
 [submodule "minimal_examples/python"]
 	path = minimal_examples/python
-	url = https://github.com/wexeee/nifti_mrs_python_example.git
+	url = https://github.com/wtclarke/nifti_mrs_python_example.git
