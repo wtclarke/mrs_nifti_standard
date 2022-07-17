@@ -4,7 +4,7 @@ name: Build specification and publish
 # 2. Upload it to the Zenodo deposit (https://zenodo.org/record/5084789)
 
 #################################################################################
-# A number of variables must be set for the jobs to work. 
+# A number of variables must be set for the jobs to work.
 #
 #   - ZENODO_URL:                    - Zenodo URL to deposit release file to.
 #
