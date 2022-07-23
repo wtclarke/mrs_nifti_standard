@@ -132,6 +132,3 @@ Example header extensions
    :align: center
 
 Extracts of NIfTI-MRS JSON-formatted header extensions for four different pieces of example data. The full example data is available from Zenodo_. Each example demonstrates a different aspect of the header extension format. Figure annotations are shown as blue italicised text. A: Structure of a header extension of 1H single-voxel data before pre-processing. B: Header extension for processed 31P MRSI, including fields that are marked for anonymisation (red). C: Example of dynamic header fields indicating an editing condition stored in the 7th dimension. D: Extract of the processing provenance in a MEGA-PRESS sequence pre-processed using FSL-MRS.
-
-
-
