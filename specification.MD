@@ -177,7 +177,7 @@ The optional data dimensions may also be used to store alternative information (
   </tr>
   <tr>
    <td>“DIM_PHASE_CYCLE”</td>
-   <td>Used for the time-proportional phase incrementation method.</td>
+   <td>Used for increments of phase-cycling, for example in dephasing unwanted coherence order pathways, or TPPI for 2D spectra.</td>
   </tr>
   <tr>
    <td>“DIM_EDIT”</td>

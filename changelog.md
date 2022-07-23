@@ -1,5 +1,10 @@
 # Changelog
 
+## 23rd July 2022 (V0.6)
+- Update to broaden definition of DIM_PHASE_CYCLE
+- Fix typo in Standard Defined metadata.
+- Updates to various code syntax/lint in repository.
+
 ## 9th November 2021 (V0.5)
 - Updates to data type specification.
 - Added licensing information to project.
