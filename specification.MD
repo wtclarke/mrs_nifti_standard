@@ -1,6 +1,6 @@
 # NIfTI MRS format specification
 
-Version 0.5
+Version 0.6
 
 
 # 1 Purpose
@@ -458,7 +458,7 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
    <td>N</td>
   </tr>
   <tr>
-   <td>AcqusitionStartTime</td>
+   <td>AcquisitionStartTime</td>
    <td>number</td>
    <td>s</td>
    <td>Time, relative to EchoTime, that the acquisition starts. Positive values indicate a time after the EchoTime, negative indicate before the EchoTime, a value of zero indicates no offset. Units: Seconds</td>
