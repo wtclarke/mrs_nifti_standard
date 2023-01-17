@@ -1,5 +1,8 @@
 # Changelog
 
+## 17th Jan 2023 (V0.7)
+- Update anonymisation flags for ManufacturersModelName and DeviceSerialNumber as per US HIPPA guidance.
+
 ## 23rd July 2022 (V0.6)
 - Update to broaden definition of DIM_PHASE_CYCLE
 - Fix typo in Standard Defined metadata.

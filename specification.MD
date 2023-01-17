@@ -1,6 +1,6 @@
 # NIfTI MRS format specification
 
-Version 0.6
+Version 0.7
 
 
 # 1 Purpose
@@ -536,7 +536,7 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
    <td>ManufacturersModelName</td>
    <td>string</td>
    <td>Manufacturer's model name of the device. DICOM (0008,1090).</td>
-   <td>N</td>
+   <td>Y</td>
   </tr>
   <tr>
    <td>DeviceSerialNumber</td>
