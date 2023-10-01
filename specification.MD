@@ -371,12 +371,12 @@ _Example 4: A fingerprinting based example. Dimension 5 is used to index changes
 
 #### 2.5.3 DICOM
 
-[http://dicom.nema.org/medical/dicom/current/output/chtml/part03/sect_C.8.14.html](http://dicom.nema.org/medical/dicom/current/output/chtml/part03/sect_C.8.14.html)
+[https://dicom.nema.org/medical/dicom/current/output/chtml/part03/sect_C.8.14.html](https://dicom.nema.org/medical/dicom/current/output/chtml/part03/sect_C.8.14.html)
 
 
 #### 2.5.4 JSON
 
-[http://json.org](http://json.org)
+[https://www.json.org](https://www.json.org)
 
 
 # 4 Appendix A: Complex data phase conventions
@@ -688,7 +688,7 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
   <tr>
    <td>ConversionTime</td>
    <td>string</td>
-   <td>Time and date of conversion. <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> compliant format. I.e. “YYYY-MM-DDThh:mm:ss.sss”</td>
+   <td>Time and date of conversion. <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> compliant format. I.e. “YYYY-MM-DDThh:mm:ss.sss”</td>
    <td>N</td>
   </tr>
   <tr>
@@ -851,7 +851,7 @@ An array for storing a record of processing steps applied to the data. Each elem
   <tr>
    <td>Time</td>
    <td>string</td>
-   <td>Time and date of processing step. <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> compliant format. I.e. “YYYY-MM-DDThh:mm:ss.sss”.</td>
+   <td>Time and date of processing step. <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> compliant format. I.e. “YYYY-MM-DDThh:mm:ss.sss”.</td>
   </tr>
   <tr>
    <td>Program</td>

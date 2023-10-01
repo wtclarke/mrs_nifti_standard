@@ -5,7 +5,7 @@
 # It is assumed that a deposit already exists on zenodo - you must
 # specify the deposit ID of that original deposit.
 #
-# http://developers.zenodo.org/#rest-api
+# https://developers.zenodo.org/#rest-api
 #
 # From https://git.fmrib.ox.ac.uk/fsl/fsleyes/fsleyes/-/blob/master/.ci/zenodo.py
 
