@@ -1,18 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Encoding spatial orientation &amp; position &mdash; NIfTI-MRS 0.3 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <title>Encoding spatial orientation &amp; position &mdash; NIfTI-MRS 0.3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=73b1e7da"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -25,17 +30,21 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> NIfTI-MRS
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            NIfTI-MRS
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to NIfTI-MRS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="datastructure.html">Overview of NIfTI-MRS</a></li>
@@ -65,7 +74,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Encoding spatial orientation &amp; position</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/spatial_orient.rst.txt" rel="nofollow"> View page source</a>
@@ -76,11 +85,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="encoding-spatial-orientation-position">
-<span id="spatial-orient"></span><h1>Encoding spatial orientation &amp; position<a class="headerlink" href="#encoding-spatial-orientation-position" title="Permalink to this headline">¶</a></h1>
+  <section id="encoding-spatial-orientation-position">
+<span id="spatial-orient"></span><h1>Encoding spatial orientation &amp; position<a class="headerlink" href="#encoding-spatial-orientation-position" title="Permalink to this heading"></a></h1>
 <p>Spatial orientation and position information of MRS(I) data can be stored in the NIfTI-MRS standard. The primary storage mechanism for this data is utilising the dedicated NIfTI header keys. This process is described in detail on this page, which also covers how separate volume of interest element and ISIS scans can be encoded.</p>
-<div class="section" id="using-the-nifti-headers">
-<h2>Using the NIfTI headers<a class="headerlink" href="#using-the-nifti-headers" title="Permalink to this headline">¶</a></h2>
+<section id="using-the-nifti-headers">
+<h2>Using the NIfTI headers<a class="headerlink" href="#using-the-nifti-headers" title="Permalink to this heading"></a></h2>
 <p>To conform with the NIfTI-MRS standard, orientation, position, and voxel size information must be stored in the NIfTI header with no deviation from the NIfTI standard. I.e. conformance is achieved when in the NIfTI header either:</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">qform_code</span></code> is set &gt; 0,</p></li>
@@ -92,22 +101,22 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">qform_code</span></code> is set = 0 (<em>NIfTI_XFORM_UNKNOWN</em>),</p></li>
 <li><p>the second to fourth elements of <code class="docutils literal notranslate"><span class="pre">pixdim</span></code> are set to the appropriate voxel dimensions or to a default of 10 m (10000 mm) for unlocalised dimensions.</p></li>
 </ol>
-<div class="section" id="default-values-for-no-poorly-defined-localisation">
-<h3>Default values for no / poorly defined localisation<a class="headerlink" href="#default-values-for-no-poorly-defined-localisation" title="Permalink to this headline">¶</a></h3>
+<section id="default-values-for-no-poorly-defined-localisation">
+<h3>Default values for no / poorly defined localisation<a class="headerlink" href="#default-values-for-no-poorly-defined-localisation" title="Permalink to this heading"></a></h3>
 <p>The description above refers to <em>unlocalised</em> dimensions. These are dimensions where there is no explicit restriction of signal reception, for example by phase encoding or RF volume selection. This standard considers dimensions defined by coil sensitivity profiles as “unlocalised”.</p>
 <p>For example in “1D-CSI” two dimensions remain unlocalised (the ones where no phase encoding is utilised). However, a dataset acquired with 2D-CSI combined with a slice-selective pulse in the third dimension has no unlocalised dimensions.</p>
 <p>For unlocalised dimensions a default pixel size of 10 m (10000 mm) should be used. This is considered to be unambiguously “unlocalised” whilst avoiding zero-valued or null-valued entries in the headers.</p>
-</div>
-</div>
-<div class="section" id="volume-localisation-in-mrsi">
-<h2>Volume localisation in MRSI<a class="headerlink" href="#volume-localisation-in-mrsi" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="volume-localisation-in-mrsi">
+<h2>Volume localisation in MRSI<a class="headerlink" href="#volume-localisation-in-mrsi" title="Permalink to this heading"></a></h2>
 <p>Occasionally multi-voxel (CSI, or MRSI) data will be acquired with additional signal suppression or selection methods with produced a volume of interest (VoI) distinct from the field of view (FoV) of the sequence. For this purpose the <code class="docutils literal notranslate"><span class="pre">VOI</span></code> header extension metadata key is defined in the standard. This takes the value of a 4 x 4 affine matrix using identical conventions to the <em>xform</em> NIfTI affine matrix. The FoV should still be encoded using the NIfTI headers.</p>
-</div>
-<div class="section" id="image-selected-in-vivo-spectroscopy-isis">
-<h2>Image-selected in vivo spectroscopy (ISIS)<a class="headerlink" href="#image-selected-in-vivo-spectroscopy-isis" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="image-selected-in-vivo-spectroscopy-isis">
+<h2>Image-selected in vivo spectroscopy (ISIS)<a class="headerlink" href="#image-selected-in-vivo-spectroscopy-isis" title="Permalink to this heading"></a></h2>
 <p>The ISIS technique utilises alternating slice selective signal inversion schemes to achieve localisation in one, two or three dimensions. Each encoding can be stored as an element of a higher encoding dimensions with the tag <code class="docutils literal notranslate"><span class="pre">DIM_ISIS</span></code>. Each encoding will have a different spatial localisation extent, but this is not encoded in NIfTI-MRS. Rather separate elements are stored for pre-processing purposes (e.g. frequency and phase alignment), but the localisation of each element is considered to be the same and the standard mechanism (as described above) is used.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

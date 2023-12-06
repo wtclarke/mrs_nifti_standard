@@ -1,18 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Introduction to NIfTI-MRS &mdash; NIfTI-MRS 0.3 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <title>Introduction to NIfTI-MRS &mdash; NIfTI-MRS 0.3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=73b1e7da"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -25,17 +30,21 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> NIfTI-MRS
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            NIfTI-MRS
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction to NIfTI-MRS</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-problem">The Problem</a></li>
@@ -63,7 +72,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Introduction to NIfTI-MRS</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/introduction.rst.txt" rel="nofollow"> View page source</a>
@@ -74,11 +83,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="introduction-to-nifti-mrs">
-<h1>Introduction to NIfTI-MRS<a class="headerlink" href="#introduction-to-nifti-mrs" title="Permalink to this headline">¶</a></h1>
+  <section id="introduction-to-nifti-mrs">
+<h1>Introduction to NIfTI-MRS<a class="headerlink" href="#introduction-to-nifti-mrs" title="Permalink to this heading"></a></h1>
 <p>NIfTI-MRS is a standard data format for storing spatially reconstructed in vivo MRS and MRSI data. NIfTI-MRS aims to solve the problem of multiple proprietary data formats used in MRS. It is based on the NIfTI data format.</p>
-<div class="section" id="the-problem">
-<h2>The Problem<a class="headerlink" href="#the-problem" title="Permalink to this headline">¶</a></h2>
+<section id="the-problem">
+<h2>The Problem<a class="headerlink" href="#the-problem" title="Permalink to this heading"></a></h2>
 <p>Users of MRS and magnetic resonance spectroscopic imaging (MRSI) are faced with numerous data formats. Often the format used is dependent on the scanner software version and local scanning practice. These formats vary greatly in the degree in which data is processed, whether data has been spatially reconstructed, what metadata is stored, and in the way the storage is formatted. Often specific expertise is needed to interpret, reconstruct, and analyse MRS data. Users therefore rely on disparate software, with inconsistent implementations.</p>
 <p>Furthermore, there is no accepted format for sharing or storing spectral data. Researchers cannot easily interpret data processed in another laboratory, nor can data be made “open” in a consistent format.</p>
 <p>The lack of a standard MRS data format hinders the use of MRS in several ways:</p>
@@ -91,14 +100,14 @@ Without a standard storage format, processing and analysis of spectroscopic data
 <p>4. <strong>It raises the difficulty of sharing data.</strong>
 Users cannot reliably use data received from other users. Data sharing repositories must handle mixed data types. Using different formats results in the shared data being processed to varying levels and having varying metadata. Anonymisation tools required for ethical public sharing of data require per-format implementation.</p>
 <p>Combined, these factors significantly raise the barrier to adoption and use of MRS, especially for non-expert users.</p>
-</div>
-<div class="section" id="the-nifti-file-format">
-<h2>The NIfTI file format<a class="headerlink" href="#the-nifti-file-format" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="the-nifti-file-format">
+<h2>The NIfTI file format<a class="headerlink" href="#the-nifti-file-format" title="Permalink to this heading"></a></h2>
 <p>The Neuroimaging Informatics Technology Initiative (NIfTI) file format was originally developed in 2003 to address the needs of MR neuroimaging researchers, and has since become the standard format for storing anatomical, fMRI, diffusion MRI, qMRI and ASL data in this domain. Whilst the NIfTI format was primarily developed for neuroimaging and fMRI, the format is sufficiently flexible to store a wide range of imaging data - including MRS.</p>
 <p>NIfTI has been chosen due to its simplicity, availability of supporting libraries, ubiquity in the neuroimaging community, and extensive pre-existing support. Moreover, the results of spectral fitting can trivially be stored as unmodified NIfTI images. As a result data, results, and associated imaging can all be held and viewed using a single format.</p>
-</div>
-<div class="section" id="aims-of-nifti-mrs">
-<h2>Aims of NIfTI-MRS<a class="headerlink" href="#aims-of-nifti-mrs" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="aims-of-nifti-mrs">
+<h2>Aims of NIfTI-MRS<a class="headerlink" href="#aims-of-nifti-mrs" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>NIfTI-MRS aims to:</dt><dd><ul class="simple">
 <li><p>provide a simplified pathway from scanner to final analysis,</p></li>
@@ -109,13 +118,13 @@ Users cannot reliably use data received from other users. Data sharing repositor
 </dd>
 </dl>
 <p>In addition, the NIfTI-MRS is designed to provide a simple anonymisation procedure and flexible storage of meta-data by users.</p>
-</div>
-<div class="section" id="what-nifti-mrs-doesn-t-cover">
-<h2>What NIfTI-MRS doesn’t cover<a class="headerlink" href="#what-nifti-mrs-doesn-t-cover" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="what-nifti-mrs-doesn-t-cover">
+<h2>What NIfTI-MRS doesn’t cover<a class="headerlink" href="#what-nifti-mrs-doesn-t-cover" title="Permalink to this heading"></a></h2>
 <p>NIfTI-MRS is not designed to store data that has not been spatially reconstructed. I.e. MRSI data before reconstruction from the k-space representation. The <a class="reference external" href="https://ismrmrd.github.io/apidocs/1.5.0/">ISMRMRD</a> data format is an open-source community driven format suitable for this purpose.</p>
 <p>For the avoidance of doubt single-voxel spectroscopy (SVS) is considered spatially reconstructed, and may be stored in NIfTI-MRS.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
