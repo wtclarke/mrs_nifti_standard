@@ -1,6 +1,9 @@
 # Changelog
 
-## 17th Jan 2023 (V0.7)
+## 6th December 2023 (V0.8)
+- Add SpectralWidth as a standard defined header value. However the dwell time stored in `pixdim[4]` is defined as the preferentially used value.
+
+## 17th January 2023 (V0.7)
 - Update anonymisation flags for ManufacturersModelName and DeviceSerialNumber as per US HIPPA guidance.
 
 ## 23rd July 2022 (V0.6)

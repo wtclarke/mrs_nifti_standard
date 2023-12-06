@@ -1,6 +1,6 @@
 # NIfTI MRS format specification
 
-Version 0.7
+Version 0.8
 
 
 # 1 Purpose
@@ -428,6 +428,13 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
    <td><strong>Unit</strong></td>
    <td><strong>Description</strong></td>
    <td><strong>Anon (Y/N)</strong></td>
+  </tr>
+  <tr>
+   <td>SpectralWidth</td>
+   <td>number</td>
+   <td>Hz</td>
+   <td>The spectral bandwidth of the MR signal that is sampled. Inverse of the dwell time. NIfTI-MRS standard compliant software will always preferentially infer the spectral width from the dwell time stored in the NIfTI pixdim field. Units: hertz</td>
+   <td>N</td>
   </tr>
   <tr>
    <td>EchoTime</td>
