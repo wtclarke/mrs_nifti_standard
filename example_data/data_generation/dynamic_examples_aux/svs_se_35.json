@@ -1,3 +1,56 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:7ccebe99aea2d1e6c90e716422dfeeb1b496922aa9f7b084d481acf800ffbb7d
-size 1265
+{
+    "sequenceName": "svs_se",
+    "description": "35 ms 3T PRESS Siemens sequence, no spatial treatment",
+    "B0": 3.0,
+    "centralShift": 4.65,
+
+    "Rx_Points":8192,
+    "Rx_SW":4000,
+    "Rx_LW":2,
+    "Rx_Phase": 0.695,
+
+    "x":[-25,25],
+    "y":[-25,25],
+    "z":[-25,25],
+    "resolution":[1,1,1],
+
+    "CoherenceFilter": [-1,1,-1],
+
+    "RFUnits":"Hz",
+    "GradUnits":"mT",
+    "spaceUnits":"mm",
+
+    "RF": [
+        {
+            "time": 0.0001,
+            "frequencyOffset": -283.0,
+            "phaseOffset": 0,
+            "amp": [2500.0],
+            "phase": [0.00000],
+            "grad": [0,0,0]
+        },
+        {
+            "time": 0.0001,
+            "frequencyOffset": -283.0,
+            "phaseOffset": 0,
+            "amp": [5000.0],
+            "phase": [0.00000],
+            "grad": [0,0,0]
+        },
+        {
+            "time": 0.0001,
+            "frequencyOffset": -283.0,
+            "phaseOffset": 0,
+            "amp": [5000.0],
+            "phase": [0.00000],
+            "grad": [0,0,0]
+        }        
+    ],
+
+    "delays": [0.007775, 0.0174,0.009575],
+    "rephaseAreas": [
+        [0.000e+00,  0.000e+00,  0.000e+00],
+       [ 0.000e+00,  0.000e+00,  0.000e+00],
+       [ 0.000e+00,  0.000e+00,  0.000e+00]
+    ]
+}
