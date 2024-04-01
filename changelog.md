@@ -1,6 +1,6 @@
 # Changelog
 
-## 28th March 2024 (V0.9)
+## 1st April 2024 (V0.9)
 - Definitions are now packaged as a machine-readable JSON file.
 
 ## 6th December 2023 (V0.8)

@@ -1,7 +1,7 @@
 {
     "nifti_mrs_version": {
         "major": 0,
-        "minor": 8},
+        "minor": 9},
 
     "dimension_tags": {
         "DIM_COIL": "For storage of data from each individual receiver coil element.",
