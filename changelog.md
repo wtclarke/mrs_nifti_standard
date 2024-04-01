@@ -1,5 +1,8 @@
 # Changelog
 
+## 1st April 2024 (V0.9)
+- Definitions are now packaged as a machine-readable JSON file.
+
 ## 6th December 2023 (V0.8)
 - Add SpectralWidth as a standard defined header value. However the dwell time stored in `pixdim[4]` is defined as the preferentially used value.
 
