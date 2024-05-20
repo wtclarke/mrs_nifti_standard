@@ -1,5 +1,8 @@
 # Changelog
 
+## 20th May 2024 (V0.10)
+- Add `DIM_METCYCLE` for storing metabolite cycled data to the dimensions definitions.
+
 ## 1st April 2024 (V0.9)
 - Definitions are now packaged as a machine-readable JSON file.
 
