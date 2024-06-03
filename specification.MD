@@ -195,6 +195,10 @@ The optional data dimensions may also be used to store alternative information (
    <td>“DIM_ISIS”</td>
    <td>Dimension for storing image-selected in vivo spectroscopy (ISIS) acquisitions.</td>
   </tr>
+  <tr>
+   <td>“DIM_METCYCLE”</td>
+   <td>For storing metabolite cycled data.</td>
+  </tr>
 </table>
 
 
