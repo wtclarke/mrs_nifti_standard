@@ -1,5 +1,7 @@
 # Example Data
 
+**This directory used to contain a subdirectory `examples` that contained the data listed below. Due to Github LFS bandwidth constraints the data was removed and can be found on the linked [Zenodo repository](https://doi.org/10.5281/zenodo.5085448).**
+
 ## List of example NIfTI-MRS data
 This file lists and explains the example data contained in this repository.
 

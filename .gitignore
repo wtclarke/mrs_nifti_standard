@@ -6,3 +6,5 @@ explanatory_doc/_build
 .vscode/
 ~$*.docx
 ~$*
+example_data/examples
+publication/figures/figure_*_data

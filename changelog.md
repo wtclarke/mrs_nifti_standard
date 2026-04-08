@@ -1,5 +1,9 @@
 # Changelog
 
+## 8th April 2026 (V0.11)
+- Example data (in `example_data/examples`) removed from repository due to Github LFS bandwidth constraints. This data remains available at https://doi.org/10.5281/zenodo.5085448.
+- Similarly data used to create the original publication figures (in `publication/figures/figure_{4/5}_data`) was removed from the master branch tip. Data remains available through older commits.
+
 ## 20th May 2024 (V0.10)
 - Add `DIM_METCYCLE` for storing metabolite cycled data to the dimensions definitions.
 
