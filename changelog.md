@@ -1,6 +1,9 @@
 # Changelog
 
-## 8th April 2026 (V0.11)
+## 9th April 2026 (V0.11)
+- Added `RxOffset` standard-defined metadata key - to track ADC offsets from `SpectrometerFrequency`.
+- Added `SpecFreqChemShift` standard-defined metadata key - to indicate the nominal chemical shift value at the `SpectrometerFrequency`. E.g. 4.65 for a 1H sequence centred on water.
+- Updated description of `AcquisitionStartTime` to indicate its use for FID as well as echo based sequences
 - Example data (in `example_data/examples`) removed from repository due to Github LFS bandwidth constraints. This data remains available at https://doi.org/10.5281/zenodo.5085448.
 - Similarly data used to create the original publication figures (in `publication/figures/figure_{4/5}_data`) was removed from the master branch tip. Data remains available through older commits.
 

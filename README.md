@@ -59,7 +59,7 @@ Minimal examples of interpreting NIfTI-MRS in are contained in Java, Python, MAT
 ## This Repository
 The repository currently holds:
 - An up-to-date copy of the format specification
-- A set of example data, including those referred to by the specification.
+- A link to a set of example data, including those referred to by the specification.
 - Original data from which examples are generated and code for generation (in jupyter notebook format).
 - Links (via git submodules) to repositories containing minimal examples in java, matlab, python, and R.
 - Manuscript, supporting information, figures, and figure generation code for the associated publication.
