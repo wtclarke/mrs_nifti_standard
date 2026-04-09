@@ -1,6 +1,6 @@
 # NIfTI MRS format specification
 
-Version 0.9
+Version 0.11
 
 
 # 1 Purpose
