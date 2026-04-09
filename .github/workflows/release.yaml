@@ -16,6 +16,12 @@ name: Build specification and publish
 on:
   release:
     types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag to test"
+        required: false
+        default: "v0.0.0"
 
 jobs:
   build_pdf:
@@ -23,7 +29,7 @@ jobs:
     name: Build PDF
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v6
     - name: Requirements
       run: |
         sudo apt install fonts-roboto
@@ -34,7 +40,7 @@ jobs:
       run: |
         ./build_specification/build_specification_pdf
     - name: Archive artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v7
       with:
         name: pdf_specification
         path: nifti_mrs_specification_*.pdf
@@ -44,14 +50,22 @@ jobs:
     needs: build_pdf
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v6
       - name: Download result for build_pdf
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v8
         with:
           name: pdf_specification
       - name: Deposit
+        if: ${{ github.event_name == 'release' && github.event.action == 'published' }}
         env:
           ZENODO_URL: ${{ secrets.ZENODO_URL }}
           ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
           ZENODO_DEPOSIT_ID: ${{ secrets.ZENODO_DEPOSIT_ID }}
         run: ./.github/workflows/zenodo_deposit.sh "$ZENODO_URL" "$ZENODO_TOKEN" "$ZENODO_DEPOSIT_ID"
+      - name: Test Deposit
+        if: ${{ github.event_name == 'workflow_dispatch'}}
+        env:
+          ZENODO_URL: ${{ secrets.ZENODO_URL }}
+          ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
+          ZENODO_DEPOSIT_ID: ${{ secrets.ZENODO_DEPOSIT_ID }}
+        run: echo "$ZENODO_URL" "$ZENODO_DEPOSIT_ID"
