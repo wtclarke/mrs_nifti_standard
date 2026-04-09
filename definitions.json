@@ -59,7 +59,7 @@
         "AcquisitionStartTime": {
             "type": ["number"],
             "units": "s",
-            "doc": "Time, relative to EchoTime, that the acquisition starts. Positive values indicate a time after the EchoTime, negative indicate before the EchoTime, a value of zero indicates no offset. Units: Seconds",
+            "doc": "Time, relative to EchoTime, or time of FID generation, that the acquisition starts. Positive values indicate a time after the EchoTime, negative indicate before the EchoTime, a value of zero indicates no offset. Units: Seconds",
             "anon": false},
         "ExcitationFlipAngle": {
             "type": ["number"],
@@ -70,6 +70,16 @@
             "type": ["number"],
             "units": "ppm",
             "doc": "Transmit chemical shift offset from SpectrometerFrequency",
+            "anon": false},
+        "RxOffset": {
+            "type": ["number"],
+            "units": "ppm",
+            "doc": "Receive event chemical shift offset from SpectrometerFrequency.",
+            "anon": false},
+        "SpecFreqChemShift": {
+            "type": ["number"],
+            "units": "ppm",
+            "doc": "The nominal chemical shift value at the SpectrometerFrequency (AKA central frequency).",
             "anon": false},
         "VOI": {
             "type": ["array", "array", "number"],

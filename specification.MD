@@ -372,6 +372,7 @@ _Example 4: A fingerprinting based example. Dimension 5 is used to index changes
 
 [https://www.nature.com/articles/sdata201644](https://www.nature.com/articles/sdata201644)
 
+[MRS-BIDS, an extension to the Brain Imaging Data Structure for magnetic resonance spectroscopy](https://www.nature.com/articles/s41597-025-05543-2)
 
 #### 2.5.3 DICOM
 
@@ -472,7 +473,7 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
    <td>AcquisitionStartTime</td>
    <td>number</td>
    <td>s</td>
-   <td>Time, relative to EchoTime, that the acquisition starts. Positive values indicate a time after the EchoTime, negative indicate before the EchoTime, a value of zero indicates no offset. Units: Seconds</td>
+   <td>Time, relative to EchoTime, or time of FID generation, that the acquisition starts. Positive values indicate a time after the EchoTime, negative indicate before the EchoTime, a value of zero indicates no offset. Units: Seconds</td>
    <td>N</td>
   </tr>
   <tr>
@@ -487,6 +488,20 @@ This appendix contains the standard-defined metadata keys. Keys have been groupe
    <td>number</td>
    <td>ppm</td>
    <td>Transmit chemical shift offset from SpectrometerFrequency</td>
+   <td>N</td>
+  </tr>
+  <tr>
+   <td>RxOffset</td>
+   <td>number</td>
+   <td>ppm</td>
+   <td>Receive event chemical shift offset from SpectrometerFrequency.</td>
+   <td>N</td>
+  </tr>
+  <tr>
+   <td>SpecFreqChemShift</td>
+   <td>number</td>
+   <td>ppm</td>
+   <td>The nominal chemical shift value at the SpectrometerFrequency (AKA central frequency).</td>
    <td>N</td>
   </tr>
   <tr>
